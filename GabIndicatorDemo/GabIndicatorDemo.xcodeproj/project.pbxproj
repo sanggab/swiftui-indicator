@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		EFC9CF702CE341A2007A6F40 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EFC9CF572CE341A0007A6F40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EFC9CF5E2CE341A0007A6F40;
+			remoteInfo = GabIndicatorDemo;
+		};
+		EFC9CF7A2CE341A2007A6F40 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EFC9CF572CE341A0007A6F40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EFC9CF5E2CE341A0007A6F40;
+			remoteInfo = GabIndicatorDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EFC9CF5F2CE341A0007A6F40 /* GabIndicatorDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GabIndicatorDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC9CF6F2CE341A2007A6F40 /* GabIndicatorDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GabIndicatorDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC9CF792CE341A2007A6F40 /* GabIndicatorDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GabIndicatorDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		EFC9CF612CE341A0007A6F40 /* GabIndicatorDemo */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = GabIndicatorDemo;
+			sourceTree = "<group>";
+		};
+		EFC9CF722CE341A2007A6F40 /* GabIndicatorDemoTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = GabIndicatorDemoTests;
+			sourceTree = "<group>";
+		};
+		EFC9CF7C2CE341A2007A6F40 /* GabIndicatorDemoUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = GabIndicatorDemoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EFC9CF5C2CE341A0007A6F40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFC9CF6C2CE341A2007A6F40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFC9CF762CE341A2007A6F40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EFC9CF562CE341A0007A6F40 = {
+			isa = PBXGroup;
+			children = (
+				EFC9CF612CE341A0007A6F40 /* GabIndicatorDemo */,
+				EFC9CF722CE341A2007A6F40 /* GabIndicatorDemoTests */,
+				EFC9CF7C2CE341A2007A6F40 /* GabIndicatorDemoUITests */,
+				EFC9CF602CE341A0007A6F40 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EFC9CF602CE341A0007A6F40 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EFC9CF5F2CE341A0007A6F40 /* GabIndicatorDemo.app */,
+				EFC9CF6F2CE341A2007A6F40 /* GabIndicatorDemoTests.xctest */,
+				EFC9CF792CE341A2007A6F40 /* GabIndicatorDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EFC9CF5E2CE341A0007A6F40 /* GabIndicatorDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFC9CF832CE341A2007A6F40 /* Build configuration list for PBXNativeTarget "GabIndicatorDemo" */;
+			buildPhases = (
+				EFC9CF5B2CE341A0007A6F40 /* Sources */,
+				EFC9CF5C2CE341A0007A6F40 /* Frameworks */,
+				EFC9CF5D2CE341A0007A6F40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				EFC9CF612CE341A0007A6F40 /* GabIndicatorDemo */,
+			);
+			name = GabIndicatorDemo;
+			packageProductDependencies = (
+			);
+			productName = GabIndicatorDemo;
+			productReference = EFC9CF5F2CE341A0007A6F40 /* GabIndicatorDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EFC9CF6E2CE341A2007A6F40 /* GabIndicatorDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFC9CF862CE341A2007A6F40 /* Build configuration list for PBXNativeTarget "GabIndicatorDemoTests" */;
+			buildPhases = (
+				EFC9CF6B2CE341A2007A6F40 /* Sources */,
+				EFC9CF6C2CE341A2007A6F40 /* Frameworks */,
+				EFC9CF6D2CE341A2007A6F40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EFC9CF712CE341A2007A6F40 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				EFC9CF722CE341A2007A6F40 /* GabIndicatorDemoTests */,
+			);
+			name = GabIndicatorDemoTests;
+			packageProductDependencies = (
+			);
+			productName = GabIndicatorDemoTests;
+			productReference = EFC9CF6F2CE341A2007A6F40 /* GabIndicatorDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EFC9CF782CE341A2007A6F40 /* GabIndicatorDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFC9CF892CE341A2007A6F40 /* Build configuration list for PBXNativeTarget "GabIndicatorDemoUITests" */;
+			buildPhases = (
+				EFC9CF752CE341A2007A6F40 /* Sources */,
+				EFC9CF762CE341A2007A6F40 /* Frameworks */,
+				EFC9CF772CE341A2007A6F40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EFC9CF7B2CE341A2007A6F40 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				EFC9CF7C2CE341A2007A6F40 /* GabIndicatorDemoUITests */,
+			);
+			name = GabIndicatorDemoUITests;
+			packageProductDependencies = (
+			);
+			productName = GabIndicatorDemoUITests;
+			productReference = EFC9CF792CE341A2007A6F40 /* GabIndicatorDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EFC9CF572CE341A0007A6F40 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					EFC9CF5E2CE341A0007A6F40 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					EFC9CF6E2CE341A2007A6F40 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = EFC9CF5E2CE341A0007A6F40;
+					};
+					EFC9CF782CE341A2007A6F40 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = EFC9CF5E2CE341A0007A6F40;
+					};
+				};
+			};
+			buildConfigurationList = EFC9CF5A2CE341A0007A6F40 /* Build configuration list for PBXProject "GabIndicatorDemo" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EFC9CF562CE341A0007A6F40;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = EFC9CF602CE341A0007A6F40 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EFC9CF5E2CE341A0007A6F40 /* GabIndicatorDemo */,
+				EFC9CF6E2CE341A2007A6F40 /* GabIndicatorDemoTests */,
+				EFC9CF782CE341A2007A6F40 /* GabIndicatorDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EFC9CF5D2CE341A0007A6F40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFC9CF6D2CE341A2007A6F40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFC9CF772CE341A2007A6F40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EFC9CF5B2CE341A0007A6F40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFC9CF6B2CE341A2007A6F40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFC9CF752CE341A2007A6F40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EFC9CF712CE341A2007A6F40 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EFC9CF5E2CE341A0007A6F40 /* GabIndicatorDemo */;
+			targetProxy = EFC9CF702CE341A2007A6F40 /* PBXContainerItemProxy */;
+		};
+		EFC9CF7B2CE341A2007A6F40 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EFC9CF5E2CE341A0007A6F40 /* GabIndicatorDemo */;
+			targetProxy = EFC9CF7A2CE341A2007A6F40 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EFC9CF812CE341A2007A6F40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EFC9CF822CE341A2007A6F40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EFC9CF842CE341A2007A6F40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GabIndicatorDemo/Preview Content\"";
+				DEVELOPMENT_TEAM = JA868URLCA;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SimSangGab.GabIndicatorDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EFC9CF852CE341A2007A6F40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GabIndicatorDemo/Preview Content\"";
+				DEVELOPMENT_TEAM = JA868URLCA;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SimSangGab.GabIndicatorDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EFC9CF872CE341A2007A6F40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JA868URLCA;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SimSangGab.GabIndicatorDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GabIndicatorDemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GabIndicatorDemo";
+			};
+			name = Debug;
+		};
+		EFC9CF882CE341A2007A6F40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JA868URLCA;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SimSangGab.GabIndicatorDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GabIndicatorDemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GabIndicatorDemo";
+			};
+			name = Release;
+		};
+		EFC9CF8A2CE341A2007A6F40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JA868URLCA;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SimSangGab.GabIndicatorDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GabIndicatorDemo;
+			};
+			name = Debug;
+		};
+		EFC9CF8B2CE341A2007A6F40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JA868URLCA;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SimSangGab.GabIndicatorDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GabIndicatorDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EFC9CF5A2CE341A0007A6F40 /* Build configuration list for PBXProject "GabIndicatorDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFC9CF812CE341A2007A6F40 /* Debug */,
+				EFC9CF822CE341A2007A6F40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFC9CF832CE341A2007A6F40 /* Build configuration list for PBXNativeTarget "GabIndicatorDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFC9CF842CE341A2007A6F40 /* Debug */,
+				EFC9CF852CE341A2007A6F40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFC9CF862CE341A2007A6F40 /* Build configuration list for PBXNativeTarget "GabIndicatorDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFC9CF872CE341A2007A6F40 /* Debug */,
+				EFC9CF882CE341A2007A6F40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFC9CF892CE341A2007A6F40 /* Build configuration list for PBXNativeTarget "GabIndicatorDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFC9CF8A2CE341A2007A6F40 /* Debug */,
+				EFC9CF8B2CE341A2007A6F40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EFC9CF572CE341A0007A6F40 /* Project object */;
+}
