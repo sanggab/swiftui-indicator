@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1600"
-   version = "2.2">
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES"
@@ -15,34 +15,11 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EFC9CF352CE33F6A007A6F40"
-               BuildableName = "GabIndicator.framework"
-               BlueprintName = "GabIndicator"
-               ReferencedContainer = "container:GabIndicator.xcodeproj">
+               BlueprintIdentifier = "EFC9CF5E2CE341A0007A6F40"
+               BuildableName = "GabIndicatorDemo.app"
+               BlueprintName = "GabIndicatorDemo"
+               ReferencedContainer = "container:GabIndicatorDemo.xcodeproj">
             </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EFC9CF3E2CE33F6A007A6F40"
-               BuildableName = "GabIndicatorTests.xctest"
-               BlueprintName = "GabIndicatorTests"
-               ReferencedContainer = "container:GabIndicator.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <AutocreatedTestPlanReference>
-            </AutocreatedTestPlanReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
@@ -58,10 +35,10 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EFC9CF3E2CE33F6A007A6F40"
-               BuildableName = "GabIndicatorTests.xctest"
-               BlueprintName = "GabIndicatorTests"
-               ReferencedContainer = "container:GabIndicator.xcodeproj">
+               BlueprintIdentifier = "EFC9CF6E2CE341A2007A6F40"
+               BuildableName = "GabIndicatorDemoTests.xctest"
+               BlueprintName = "GabIndicatorDemoTests"
+               ReferencedContainer = "container:GabIndicatorDemo.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -69,10 +46,10 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EFC9CF1F2CE33F07007A6F40"
-               BuildableName = "GabIndicatorUITests.xctest"
-               BlueprintName = "GabIndicatorUITests"
-               ReferencedContainer = "container:GabIndicator.xcodeproj">
+               BlueprintIdentifier = "EFC9CF782CE341A2007A6F40"
+               BuildableName = "GabIndicatorDemoUITests.xctest"
+               BlueprintName = "GabIndicatorDemoUITests"
+               ReferencedContainer = "container:GabIndicatorDemo.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -91,10 +68,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EFC9CF352CE33F6A007A6F40"
-            BuildableName = "GabIndicator.framework"
-            BlueprintName = "GabIndicator"
-            ReferencedContainer = "container:GabIndicator.xcodeproj">
+            BlueprintIdentifier = "EFC9CF5E2CE341A0007A6F40"
+            BuildableName = "GabIndicatorDemo.app"
+            BlueprintName = "GabIndicatorDemo"
+            ReferencedContainer = "container:GabIndicatorDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -108,10 +85,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EFC9CF352CE33F6A007A6F40"
-            BuildableName = "GabIndicator.framework"
-            BlueprintName = "GabIndicator"
-            ReferencedContainer = "container:GabIndicator.xcodeproj">
+            BlueprintIdentifier = "EFC9CF5E2CE341A0007A6F40"
+            BuildableName = "GabIndicatorDemo.app"
+            BlueprintName = "GabIndicatorDemo"
+            ReferencedContainer = "container:GabIndicatorDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
