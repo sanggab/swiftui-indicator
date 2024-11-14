@@ -12,11 +12,11 @@ public class TestShapeViewModel: TestGabReducer {
     
     public struct TimerState: Equatable {
         public static func == (lhs: TestShapeViewModel.TimerState, rhs: TestShapeViewModel.TimerState) -> Bool {
-            return lhs.speed == rhs.speed ||
+            return lhs.speed == rhs.speed &&
             lhs.cancellable == rhs.cancellable
         }
         
-        init() {
+        public init() {
             self.timer = Timer.publish(every: self.speed, on: .main, in: .default)
         }
         
@@ -68,7 +68,7 @@ public class TestShapeViewModel: TestGabReducer {
         print("상갑 logEvent \(#function) action: \(action)")
         switch action {
         case .timer(let timerAC):
-            timerAction(timerAC)
+            self.timerAction(timerAC)
         }
     }
     
@@ -76,26 +76,25 @@ public class TestShapeViewModel: TestGabReducer {
         print("상갑 logEvent \(#function) action: \(action)")
         switch action {
         case .setSpeed(let double):
-            update(\.timerState.speed, newValue: double)
+            self.update(\.timerState.speed, newValue: double)
         case .setTimer:
             if self.state.timerState.speed == .zero {
                 self.timerAction(.setSpeed(1.5))
             }
-            
-            setTimer()
+            self.setTimer()
         case .stopTimer:
-            stopTimer()
+            self.stopTimer()
         }
     }
 }
 
 extension TestShapeViewModel {
     public func callAsFunction<V>(_ keyPath: KeyPath<State, V>) -> V where V : Equatable {
-        return state[keyPath: keyPath]
+        return self.state[keyPath: keyPath]
     }
     
     private func update<V>(_ keyPath: WritableKeyPath<State, V>, newValue: V) where V : Equatable {
-        state[keyPath: keyPath] = newValue
+        self.state[keyPath: keyPath] = newValue
     }
     
     private func setTimer() {

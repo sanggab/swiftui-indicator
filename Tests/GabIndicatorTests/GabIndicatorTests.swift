@@ -38,5 +38,10 @@ extension GabIndicatorTests {
             
             #expect(viewModel(\.timerState).existCancellables() == false)
         }
+        
+//        @Test("WingShapeTest")
+//        func wingShapeTest() async throws {
+//            
+//        }
     }
 }
