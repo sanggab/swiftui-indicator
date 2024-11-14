@@ -19,7 +19,8 @@ struct GabIndicatorTests {
 
 extension GabIndicatorTests {
     
-    @Suite("RefreshShpaeTest", .tags(.refreshSuite))
+    @Suite("RefreshShpaeTest",
+           .tags(.refreshSuite))
     struct RefreshShapeTest {
         @ObservedObject var viewModel: TestShapeViewModel = TestShapeViewModel()
         
@@ -39,9 +40,55 @@ extension GabIndicatorTests {
             #expect(viewModel(\.timerState).existCancellables() == false)
         }
         
-//        @Test("WingShapeTest")
-//        func wingShapeTest() async throws {
-//            
-//        }
+        
+        @Test("ShapePointFeatureTest",
+              arguments: [ [15.0, 30.0, 45.0, 60.0, 75.0, 90.0].randomElement() ?? .zero ])
+        func shapePointFeatureTest(degress: Double) async throws {
+            print("상갑 logEvent \(#function) degress: \(degress)")
+            let rect = CGRect(x: 0,
+                              y: 0,
+                              width: 50,
+                              height: 50)
+            
+            let radians = degress * .pi / 180
+            
+            let movePoint = viewModel.makeMovePoint(in: rect,
+                                                    radians: radians)
+            
+            let addLinePoint = viewModel.makeAddLinePoint(in: rect,
+                                                          radians: radians,
+                                                          movePoint: movePoint)
+            
+            let addLinePoint2 = viewModel.makeAddLinePoint(in: rect,
+                                                           radians: radians)
+            
+            #expect(addLinePoint == addLinePoint2)
+        }
+        
+        @available(iOS 16.0, *)
+        @Test("ShapePointFeatureTest - timeLimit",
+              .timeLimit(.minutes(1)),
+              arguments: [ [15.0, 30.0, 45.0, 60.0, 75.0, 90.0].randomElement() ?? .zero ])
+        func shapePointFeatureTest2(degress: Double) async throws {
+            print("상갑 logEvent \(#function) degress: \(degress)")
+            let rect = CGRect(x: 0,
+                              y: 0,
+                              width: 50,
+                              height: 50)
+            
+            let radians = degress * .pi / 180
+            
+            let movePoint = viewModel.makeMovePoint(in: rect,
+                                                    radians: radians)
+            
+            let addLinePoint = viewModel.makeAddLinePoint(in: rect,
+                                                          radians: radians,
+                                                          movePoint: movePoint)
+            
+            let addLinePoint2 = viewModel.makeAddLinePoint(in: rect,
+                                                           radians: radians)
+            
+            #expect(addLinePoint == addLinePoint2)
+        }
     }
 }

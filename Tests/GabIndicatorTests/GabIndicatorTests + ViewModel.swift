@@ -105,3 +105,33 @@ extension TestShapeViewModel {
         self.state.timerState.stopTimer()
     }
 }
+
+// MARK: Point Calculate
+extension TestShapeViewModel: TestShapeFeatures {
+    @inlinable
+    public func makeMovePoint(in rect: CGRect, radians: Double) -> TestRefreshShapeMovePoint {
+        let x = (rect.width / 2) + ((rect.width / 2) * cos(radians))
+        let y = (rect.height / 2) + ((rect.height / 2) * sin(radians))
+        
+        return TestRefreshShapeMovePoint(x: x,
+                                         y: y)
+    }
+    @inlinable
+    public func makeAddLinePoint(in rect: CGRect, radians: Double) -> TestRefreshShapeAddLinePoint {
+        let movePoint = self.makeMovePoint(in: rect, radians: radians)
+        
+        let x = movePoint.x + ((rect.width / 2) * cos(radians))
+        let y = movePoint.y + ((rect.height / 2) * sin(radians))
+        
+        return TestRefreshShapeAddLinePoint(x: x,
+                                            y: y)
+    }
+    @inlinable
+    public func makeAddLinePoint(in rect: CGRect, radians: Double, movePoint: TestRefreshShapeMovePoint) -> TestRefreshShapeAddLinePoint {
+        let x = movePoint.x + ((rect.width / 2) * cos(radians))
+        let y = movePoint.y + ((rect.height / 2) * sin(radians))
+        
+        return TestRefreshShapeAddLinePoint(x: x,
+                                            y: y)
+    }
+}

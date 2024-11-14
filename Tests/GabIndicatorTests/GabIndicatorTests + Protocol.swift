@@ -15,3 +15,11 @@ protocol TestGabReducer: ObservableObject {
     
     func action(_ action: Action)
 }
+
+public protocol TestShapePointFeatures {
+    func makeMovePoint(in rect: CGRect, radians: Double) -> TestRefreshShapeMovePoint
+    func makeAddLinePoint(in rect: CGRect, radians: Double) -> TestRefreshShapeAddLinePoint
+    func makeAddLinePoint(in rect: CGRect, radians: Double, movePoint: TestRefreshShapeMovePoint) -> TestRefreshShapeAddLinePoint
+}
+
+public protocol TestShapeFeatures: TestShapePointFeatures { }
