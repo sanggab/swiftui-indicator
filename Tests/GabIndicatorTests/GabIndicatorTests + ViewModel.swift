@@ -134,4 +134,11 @@ extension TestShapeViewModel: TestShapeFeatures {
         return TestRefreshShapeAddLinePoint(x: x,
                                             y: y)
     }
+    @inlinable
+    public func makeShapePoints(in rect: CGRect, radians: Double) -> TestShapeFeatures.TestShapePoints {
+        let movePoint = self.makeMovePoint(in: rect, radians: radians)
+        let addLinePoint = self.makeAddLinePoint(in: rect, radians: radians, movePoint: movePoint)
+        
+        return (movePoint, addLinePoint)
+    }
 }

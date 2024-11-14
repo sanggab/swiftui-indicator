@@ -62,7 +62,11 @@ extension GabIndicatorTests {
             let addLinePoint2 = viewModel.makeAddLinePoint(in: rect,
                                                            radians: radians)
             
-            #expect(addLinePoint == addLinePoint2)
+            try #require(addLinePoint == addLinePoint2)
+            
+            let shapePoint = viewModel.makeShapePoints(in: rect, radians: radians)
+            
+            #expect(shapePoint.Move == movePoint && shapePoint.Add == addLinePoint)
         }
         
         @available(iOS 16.0, *)
@@ -88,7 +92,16 @@ extension GabIndicatorTests {
             let addLinePoint2 = viewModel.makeAddLinePoint(in: rect,
                                                            radians: radians)
             
-            #expect(addLinePoint == addLinePoint2)
+            try #require(addLinePoint == addLinePoint2)
+            
+            let shapePoint = viewModel.makeShapePoints(in: rect, radians: radians)
+            
+            #expect(shapePoint.Move == movePoint && shapePoint.Add == addLinePoint)
+        } 
+        
+        @Test("WingTest", .disabled("개발 진행중"))
+        func wingTest() async throws {
+            print("상갑 logEvent \(#function)")
         }
     }
 }

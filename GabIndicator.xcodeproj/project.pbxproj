@@ -29,7 +29,9 @@
 		EF36A72E2CE4A18100D0F499 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Shape/Protocol/Reducer.swift,
+				Model/Refresh/Point/Point.swift,
+				Protocol/Feature.swift,
+				Protocol/Reducer.swift,
 				Shape/Refresh/WingShape.swift,
 				Traits/Preview/PreviewTraits.swift,
 				ViewModel/ShapeViewModel.swift,

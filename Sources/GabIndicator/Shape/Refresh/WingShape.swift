@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WingShape: Shape {
+    @EnvironmentObject private var shapeViewModel: ShapeViewModel
+    
     
     var degress: Double
     
@@ -21,11 +23,13 @@ struct WingShape: Shape {
     
     func drawWing(in rect: CGRect) -> Path {
         Path { path in
-            let radians = degress * .pi / 180
+            let radians = self.degress * .pi / 180
         }
     }
 }
 
-#Preview {
+@available(iOS 18.0, *)
+#Preview(traits: .shapeViewModel) {
     WingShape(degress: 45.0)
+        .frame(width: 20, height: 20)
 }
