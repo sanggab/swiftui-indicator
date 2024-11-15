@@ -16,4 +16,5 @@ protocol ShapePointFeatures {
     func makeShapePoints(in rect: CGRect, radians: Double) -> ShapePoints
 }
 
+@available(*, deprecated, message: "잠정 폐지")
 protocol ShapeMainFeatures: ShapePointFeatures { }

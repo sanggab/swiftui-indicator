@@ -46,19 +46,37 @@ public class TestShapeViewModel: TestGabReducer {
         }
     }
     
+    public struct WingState: Equatable {
+        public init () { }
+        
+        public var angle: Double = 45.0
+        public var strokeStyle: StrokeStyle = StrokeStyle(lineWidth: 2,
+                                                          lineCap: .round,
+                                                          lineJoin: .round)
+        public var rotateAngle: Double = 45.0
+    }
+    
     public struct State: Equatable {
         public init () { }
         
         public var timerState: TimerState = .init()
+        public var wingState: WingState = .init()
     }
     
     public enum Action: Equatable {
         case timer(Action.Timer)
+        case wing(Action.Wing)
         
         public enum Timer: Equatable {
             case setSpeed(Double)
             case setTimer
             case stopTimer
+        }
+        
+        public enum Wing: Equatable {
+            case setAngle(Double)
+            case setStyle(StrokeStyle)
+            case setRotateAngle(Double)
         }
     }
     
@@ -69,14 +87,16 @@ public class TestShapeViewModel: TestGabReducer {
         switch action {
         case .timer(let timerAC):
             self.timerAction(timerAC)
+        case .wing(let wingAC):
+            self.wingAction(wingAC)
         }
     }
     
     private func timerAction(_ action: Action.Timer) {
         print("상갑 logEvent \(#function) action: \(action)")
         switch action {
-        case .setSpeed(let double):
-            self.update(\.timerState.speed, newValue: double)
+        case .setSpeed(let speed):
+            self.update(\.timerState.speed, newValue: speed)
         case .setTimer:
             if self.state.timerState.speed == .zero {
                 self.timerAction(.setSpeed(1.5))
@@ -84,6 +104,22 @@ public class TestShapeViewModel: TestGabReducer {
             self.setTimer()
         case .stopTimer:
             self.stopTimer()
+        }
+    }
+    
+    private func wingAction(_ action: Action.Wing) {
+        print("상갑 logEvent \(#function) action: \(action)")
+        switch action {
+        case .setAngle(let angle):
+            self.update(\.wingState.angle, newValue: angle)
+            
+            if angle != self(\.wingState.rotateAngle) {
+                self.wingAction(.setRotateAngle(angle))
+            }
+        case .setStyle(let strokeStyle):
+            self.update(\.wingState.strokeStyle, newValue: strokeStyle)
+        case .setRotateAngle(let angle):
+            self.update(\.wingState.rotateAngle, newValue: angle)
         }
     }
 }

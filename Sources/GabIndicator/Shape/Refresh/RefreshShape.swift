@@ -7,13 +7,17 @@
 
 import SwiftUI
 
-struct RefreshShape: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        
+public struct RefreshShape: View {
+    @EnvironmentObject private var viewModel: ShapeViewModel
+    
+    public var body: some View {
+        WingShape(degress: 0)
+            .stroke(style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round))
+            .frame(width: 20, height: 20)
     }
 }
 
-#Preview {
+@available(iOS 18.0, *)
+#Preview(traits: .shapeViewModel) {
     RefreshShape()
 }

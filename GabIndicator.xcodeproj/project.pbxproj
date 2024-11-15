@@ -25,23 +25,8 @@
 		EFC9CF3F2CE33F6A007A6F40 /* GabIndicatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GabIndicatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		EF36A72E2CE4A18100D0F499 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Model/Refresh/Point/Point.swift,
-				Protocol/Feature.swift,
-				Protocol/Reducer.swift,
-				Shape/Refresh/WingShape.swift,
-				Traits/Preview/PreviewTraits.swift,
-				ViewModel/ShapeViewModel.swift,
-			);
-			target = EFC9CF3E2CE33F6A007A6F40 /* GabIndicatorTests */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		EFC9CF372CE33F6A007A6F40 /* GabIndicator */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (EF36A72E2CE4A18100D0F499 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = GabIndicator; sourceTree = "<group>"; };
+		EFC9CF372CE33F6A007A6F40 /* GabIndicator */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = GabIndicator; sourceTree = "<group>"; };
 		EFC9CF432CE33F6A007A6F40 /* GabIndicatorTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = GabIndicatorTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 

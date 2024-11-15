@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GabIndicator
 
 struct ContentView: View {
     var body: some View {
@@ -13,6 +14,8 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
             Text("Hello, world!")
+            
+            
         }
         .padding()
     }

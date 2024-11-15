@@ -66,7 +66,7 @@ extension GabIndicatorTests {
             
             let shapePoint = viewModel.makeShapePoints(in: rect, radians: radians)
             
-            #expect(shapePoint.Move == movePoint && shapePoint.Add == addLinePoint)
+            #expect(shapePoint.Move == movePoint && shapePoint.Add == addLinePoint && shapePoint.Add == addLinePoint2)
         }
         
         @available(iOS 16.0, *)
@@ -96,12 +96,29 @@ extension GabIndicatorTests {
             
             let shapePoint = viewModel.makeShapePoints(in: rect, radians: radians)
             
-            #expect(shapePoint.Move == movePoint && shapePoint.Add == addLinePoint)
-        } 
+            #expect(shapePoint.Move == movePoint && shapePoint.Add == addLinePoint && shapePoint.Add == addLinePoint2)
+        }
         
-        @Test("WingTest", .disabled("개발 진행중"))
-        func wingTest() async throws {
+        @Test("WingTest",
+              arguments: zip([ [15.0, 30.0, 45.0, 60.0, 75.0, 90.0].randomElement() ?? .zero ],
+                             [ [CGRect(x: 0, y: 0, width: 20, height: 20),
+                                CGRect(x: 0, y: 0, width: 40, height: 40)].randomElement() ?? .zero ] ))
+        func wingTest(angle: Double, rect: CGRect) async throws {
             print("상갑 logEvent \(#function)")
+            
+            try #require(viewModel(\.wingState.angle) == viewModel(\.wingState.rotateAngle))
+            
+            viewModel.action(.wing(.setAngle(angle)))
+            
+            try #require(viewModel(\.wingState.angle) == viewModel(\.wingState.rotateAngle))
+            
+            viewModel.action(.wing(.setStyle(StrokeStyle(lineWidth: rect.width / 4, lineCap: .round, lineJoin: .round))))
+            
+            #expect(viewModel(\.wingState.strokeStyle).lineWidth == rect.width / 4)
+            
+            viewModel.action(.wing(.setRotateAngle(90)))
+            
+            #expect(viewModel(\.wingState.angle) != viewModel(\.wingState.rotateAngle))
         }
     }
 }
