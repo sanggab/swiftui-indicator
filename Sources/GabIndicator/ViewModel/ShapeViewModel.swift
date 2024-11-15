@@ -55,6 +55,7 @@ final class ShapeViewModel: GabReducer {
                                                           lineCap: .round,
                                                           lineJoin: .round)
         var rotateAngle: Double = 45.0
+        var wingCount: Int = 8
     }
     
     struct State: Equatable {
@@ -78,6 +79,7 @@ final class ShapeViewModel: GabReducer {
             case setAngle(Double)
             case setStyle(StrokeStyle)
             case setRotateAngle(Double)
+            case setWingCount(Int)
         }
     }
     
@@ -117,10 +119,15 @@ final class ShapeViewModel: GabReducer {
             if angle != self(\.wingState.rotateAngle) {
                 self.wingAction(.setRotateAngle(angle))
             }
+            
+            let wingCount = Int(abs(360 / self(\.wingState.angle)))
+            self.wingAction(.setWingCount(wingCount))
         case .setStyle(let strokeStyle):
             self.update(\.wingState.strokeStyle, newValue: strokeStyle)
         case .setRotateAngle(let angle):
             self.update(\.wingState.rotateAngle, newValue: angle)
+        case .setWingCount(let count):
+            self.update(\.wingState.wingCount, newValue: count)
         }
     }
 }

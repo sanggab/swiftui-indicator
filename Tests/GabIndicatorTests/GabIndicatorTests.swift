@@ -112,6 +112,8 @@ extension GabIndicatorTests {
             
             try #require(viewModel(\.wingState.angle) == viewModel(\.wingState.rotateAngle))
             
+            try #require(viewModel(\.wingState.wingCount) == Int(abs(360 / angle)))
+            
             viewModel.action(.wing(.setStyle(StrokeStyle(lineWidth: rect.width / 4, lineCap: .round, lineJoin: .round))))
             
             #expect(viewModel(\.wingState.strokeStyle).lineWidth == rect.width / 4)
