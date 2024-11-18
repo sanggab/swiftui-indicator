@@ -6,16 +6,18 @@
 //
 
 import SwiftUI
-
-public struct RefreshShape: View {
+/// Traits를 이용한 실험
+struct RefreshShape: View {
     @EnvironmentObject private var viewModel: ShapeViewModel
     
-    public var body: some View {
-        two
+    var body: some View {
+        shape1
     }
     
+    
+    @available(*, deprecated, renamed: "shape2", message: "상장폐지")
     @ViewBuilder
-    private var one: some View {
+    private var shape1: some View {
         ZStack {
             ForEach(0..<viewModel(\.wingState.wingCount), id: \.self) { index in
                 WingShape(degress: getDegress(index: index))
@@ -51,12 +53,12 @@ public struct RefreshShape: View {
         .onAppear {
             viewModel.action(.wing(.setStyle(StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))))
             viewModel.action(.timer(.setSpeed(0.05)))
-            viewModel.action(.timer(.setTimer))
+//            viewModel.action(.timer(.setTimer))
         }
     }
     
     @ViewBuilder
-    private var two: some View {
+    private var shape2: some View {
         ZStack {
             ForEach(0..<viewModel(\.wingState.wingCount), id: \.self) { index in
                 WingShape(degress: viewModel(\.wingState.rotateAngle))

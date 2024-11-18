@@ -6,6 +6,11 @@
 	objectVersion = 70;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EF0A55C12CEB21FD009A6654 /* GabIndicator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF0A55C02CEB21FD009A6654 /* GabIndicator.framework */; };
+		EF0A55C22CEB21FD009A6654 /* GabIndicator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF0A55C02CEB21FD009A6654 /* GabIndicator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		EFC9CF702CE341A2007A6F40 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -23,7 +28,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		EF0A55C32CEB21FD009A6654 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EF0A55C22CEB21FD009A6654 /* GabIndicator.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		EF0A55C02CEB21FD009A6654 /* GabIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GabIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC9CF5F2CE341A0007A6F40 /* GabIndicatorDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GabIndicatorDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC9CF6F2CE341A2007A6F40 /* GabIndicatorDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GabIndicatorDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC9CF792CE341A2007A6F40 /* GabIndicatorDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GabIndicatorDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF0A55C12CEB21FD009A6654 /* GabIndicator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +81,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF0A55BF2CEB21FD009A6654 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF0A55C02CEB21FD009A6654 /* GabIndicator.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EFC9CF562CE341A0007A6F40 = {
 			isa = PBXGroup;
 			children = (
 				EFC9CF612CE341A0007A6F40 /* GabIndicatorDemo */,
 				EFC9CF722CE341A2007A6F40 /* GabIndicatorDemoTests */,
 				EFC9CF7C2CE341A2007A6F40 /* GabIndicatorDemoUITests */,
+				EF0A55BF2CEB21FD009A6654 /* Frameworks */,
 				EFC9CF602CE341A0007A6F40 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +120,7 @@
 				EFC9CF5B2CE341A0007A6F40 /* Sources */,
 				EFC9CF5C2CE341A0007A6F40 /* Frameworks */,
 				EFC9CF5D2CE341A0007A6F40 /* Resources */,
+				EF0A55C32CEB21FD009A6654 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

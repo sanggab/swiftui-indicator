@@ -40,7 +40,7 @@ final class TrigonometricCalculator: ShapePointFeatures {
                                         y: y)
     }
     @usableFromInline
-    func makeShapePoints(in rect: CGRect, radians: Double) -> ShapeMainFeatures.ShapePoints {
+    func makeShapePoints(in rect: CGRect, radians: Double) -> ShapePointFeatures.ShapePoints {
         let movePoint = self.makeMovePoint(in: rect, radians: radians)
         let addLinePoint = self.makeAddLinePoint(in: rect, radians: radians, movePoint: movePoint)
         
