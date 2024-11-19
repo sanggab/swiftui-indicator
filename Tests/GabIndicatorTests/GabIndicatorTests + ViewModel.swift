@@ -55,6 +55,7 @@ public class TestShapeViewModel: TestGabReducer {
                                                           lineJoin: .round)
         public var rotateAngle: Double = 45.0
         public var wingCount: Int = 8
+        public var isPlaying: Bool = true
     }
     
     public struct State: Equatable {
@@ -79,6 +80,7 @@ public class TestShapeViewModel: TestGabReducer {
             case setStyle(StrokeStyle)
             case setRotateAngle(Double)
             case setWingCount(Int)
+            case control(Bool)
         }
     }
     
@@ -129,6 +131,8 @@ public class TestShapeViewModel: TestGabReducer {
             self.update(\.wingState.rotateAngle, newValue: angle)
         case .setWingCount(let count):
             self.update(\.wingState.wingCount, newValue: count)
+        case .control(let status):
+            self.update(\.wingState.isPlaying, newValue: status)
         }
     }
 }

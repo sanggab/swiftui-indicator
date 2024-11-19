@@ -10,6 +10,8 @@ import SwiftUI
 public struct RefreshIndicator: View {
     @ObservedObject private var viewModel: ShapeViewModel = ShapeViewModel()
     
+    @State private var controlState: Bool = false
+    
     public init() { }
     
     public var body: some View {
@@ -52,9 +54,19 @@ public struct RefreshIndicator: View {
             
             viewModel.action(.wing(.setRotateAngle(currentAngle)))
         }
+        .onChange(of: viewModel(\.wingState.isPlaying)) { newValue in
+            print("상갑 logEvent \(#function) isPlaying: \(newValue)")
+            if newValue {
+                print("isPlaying 타이머 실행")
+                viewModel.action(.timer(.setTimer))
+            } else {
+                viewModel.action(.timer(.stopTimer))
+            }
+        }
         .onAppear {
-            print("상갑 logEvent \(#function) onAppear")
+            print("상갑 logEvent \(#function) isPlaying onAppear")
             viewModel.action(.wing(.setRotateAngle(getDegress(index: 0))))
+            viewModel.action(.timer(.setTimer))
         }
     }
 }
@@ -75,7 +87,15 @@ public extension RefreshIndicator {
     
     func setSpeed(duration: Double) -> RefreshIndicator {
         let view: RefreshIndicator = self
+        print("상갑 logEvent \(#function)")
         view.viewModel.action(.timer(.setSpeed(duration)))
+        return view
+    }
+    
+    func controlIndicator(state: Bool) -> RefreshIndicator {
+        let view: RefreshIndicator = self
+        print("상갑 logEvent \(#function) state: \(state)")
+        view.viewModel.action(.wing(.control(state)))
         return view
     }
 }
@@ -111,11 +131,23 @@ extension RefreshIndicator {
     }
 }
 
+@available(iOS 18.0, *)
 #Preview {
+    
+    @Previewable @State var isPlaying: Bool = true
+    
+    Text("hi232113")
+        .foregroundColor(Color.red)
+        .padding(.bottom, 50)
+        .onTapGesture {
+            isPlaying.toggle()
+        }
+    
     RefreshIndicator()
         .strokeStyle(style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
         .setAngle(angle: 45)
-        .setSpeed(duration: 0.1)
+        .setSpeed(duration: 0.05)
+        .controlIndicator(state: isPlaying)
         .frame(width: 50, height: 50)
 //        .foregroundColor(Color.green)
 }

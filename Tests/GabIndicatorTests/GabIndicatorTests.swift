@@ -121,6 +121,12 @@ extension GabIndicatorTests {
             viewModel.action(.wing(.setRotateAngle(90)))
             
             #expect(viewModel(\.wingState.angle) != viewModel(\.wingState.rotateAngle))
+            
+            try #require(viewModel(\.wingState.isPlaying))
+            
+            viewModel.action(.wing(.control(false)))
+            
+            #expect(!viewModel(\.wingState.isPlaying))
         }
     }
 }

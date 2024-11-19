@@ -11,7 +11,7 @@ struct RefreshShape: View {
     @EnvironmentObject private var viewModel: ShapeViewModel
     
     var body: some View {
-        shape1
+        shape2
     }
     
     

@@ -25,19 +25,19 @@ final class ShapeViewModel: GabReducer {
         var speed: Double = .zero
         
         mutating func setTimer() {
-            print("상갑 logEvent \(#function)")
+//            print("상갑 logEvent \(#function)")
             // MARK: Timer의 autoConnect의 장점은 멀까 - 어차피 every의 시간마다 호출되서 View가 Draw될 때 바로 onReceive에 구독되는 것도 아닌데..
             self.timer = Timer.publish(every: self.speed, on: .main, in: .default)
             
-            self.timer.sink { output in
-                print("상갑 logEvent \(#function) output: \(output)")
-            }.store(in: &cancellable)
+//            self.timer.sink { output in
+//                print("상갑 logEvent \(#function) output: \(output)")
+//            }.store(in: &cancellable)
             
             self.timer.connect().store(in: &cancellable)
         }
         
         mutating func stopTimer() {
-            print("상갑 logEvent \(#function)")
+//            print("상갑 logEvent \(#function)")
             self.cancellable.removeAll()
         }
         
@@ -56,6 +56,7 @@ final class ShapeViewModel: GabReducer {
                                                           lineJoin: .round)
         var rotateAngle: Double = 45.0
         var wingCount: Int = 8
+        var isPlaying: Bool = true
     }
     
     struct State: Equatable {
@@ -80,13 +81,14 @@ final class ShapeViewModel: GabReducer {
             case setStyle(StrokeStyle)
             case setRotateAngle(Double)
             case setWingCount(Int)
+            case control(Bool)
         }
     }
     
     @Published private var state: State = .init()
     
     func action(_ action: Action) {
-        print("상갑 logEvent \(#function) action: \(action)")
+//        print("상갑 logEvent \(#function) action: \(action)")
         switch action {
         case .timer(let timerAC):
             self.timerAction(timerAC)
@@ -96,7 +98,7 @@ final class ShapeViewModel: GabReducer {
     }
     
     private func timerAction(_ action: Action.Timer) {
-        print("상갑 logEvent \(#function) action: \(action)")
+//        print("상갑 logEvent \(#function) action: \(action)")
         switch action {
         case .setSpeed(let speed):
             self.update(\.timerState.speed, newValue: speed)
@@ -111,7 +113,7 @@ final class ShapeViewModel: GabReducer {
     }
     
     private func wingAction(_ action: Action.Wing) {
-        print("상갑 logEvent \(#function) action: \(action)")
+//        print("상갑 logEvent \(#function) action: \(action)")
         switch action {
         case .setAngle(let angle):
             self.update(\.wingState.angle, newValue: angle)
@@ -128,6 +130,8 @@ final class ShapeViewModel: GabReducer {
             self.update(\.wingState.rotateAngle, newValue: angle)
         case .setWingCount(let count):
             self.update(\.wingState.wingCount, newValue: count)
+        case .control(let status):
+            self.update(\.wingState.isPlaying, newValue: status)
         }
     }
 }
