@@ -11,7 +11,7 @@ struct RefreshShape: View {
     @EnvironmentObject private var viewModel: ShapeViewModel
     
     var body: some View {
-        shape2
+        shape1
     }
     
     
@@ -51,6 +51,7 @@ struct RefreshShape: View {
             viewModel.action(.wing(.setRotateAngle(currentAngle)))
         }
         .onAppear {
+            viewModel.action(.wing(.setAngle(31)))
             viewModel.action(.wing(.setStyle(StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))))
             viewModel.action(.timer(.setSpeed(0.05)))
 //            viewModel.action(.timer(.setTimer))
@@ -103,6 +104,7 @@ struct RefreshShape: View {
 extension RefreshShape {
     /// 현재 wing의 degress를 결정짓는 요소
     /// .rotationEffect의 역할
+    /// 지금 처음 getDegress가 무조건 -90으로 들어가서
     private func getDegress(index: Int) -> Double {
         /// 원래대로 그린다면 정해지는 Angle
         let currentAngle = (viewModel(\.wingState.angle) * Double(index))
@@ -110,6 +112,10 @@ extension RefreshShape {
         let rotateAngle = viewModel(\.wingState.rotateAngle)
         /// Swift에서 Path를 이용해 각도를 계산하거나 addArc등 그릴 경우에, 0도는 3시방향이라 이것을 12시 방향으로 돌리기 위한 각도
         let moveAngle = 90 + viewModel(\.wingState.angle)
+        print("상갑 logEvent \(#function) index: \(index)")
+        print("상갑 logEvent \(#function) currentAngle: \(currentAngle)")
+        print("상갑 logEvent \(#function) rotateAngle: \(rotateAngle)")
+        print("상갑 logEvent \(#function) moveAngle: \(moveAngle)")
         
         return currentAngle + rotateAngle - moveAngle
     }

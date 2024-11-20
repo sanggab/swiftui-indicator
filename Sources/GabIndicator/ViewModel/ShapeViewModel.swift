@@ -122,6 +122,9 @@ final class ShapeViewModel: GabReducer {
                 self.wingAction(.setRotateAngle(angle))
             }
             
+            let cal = 360 / self(\.wingState.angle)
+            print("상갑 logEvent \(#function) cal: \(cal)")
+            
             let wingCount = Int(abs(360 / self(\.wingState.angle)))
             self.wingAction(.setWingCount(wingCount))
         case .setStyle(let strokeStyle):

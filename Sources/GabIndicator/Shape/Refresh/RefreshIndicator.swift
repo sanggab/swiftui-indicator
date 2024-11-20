@@ -27,22 +27,6 @@ public struct RefreshIndicator: View {
                     .rotationEffect(.degrees(viewModel(\.wingState.angle)) * Double(index))
                     .opacity(getOpacity(index: index))
             }
-            
-            Button {
-                if viewModel(\.timerState).existCancellables() {
-                    viewModel.action(.timer(.stopTimer))
-                } else {
-//                    viewModel.action(.timer(.setSpeed(0.05)))
-                    viewModel.action(.timer(.setTimer))
-                }
-            } label: {
-                if viewModel(\.timerState).existCancellables() {
-                    Text("멈춰!")
-                } else {
-                    Text("시작!")
-                }
-            }
-
         }
         .onReceive(viewModel(\.timerState).timer) { _ in
             var currentAngle = viewModel(\.wingState.rotateAngle)
@@ -54,19 +38,10 @@ public struct RefreshIndicator: View {
             
             viewModel.action(.wing(.setRotateAngle(currentAngle)))
         }
-        .onChange(of: viewModel(\.wingState.isPlaying)) { newValue in
-            print("상갑 logEvent \(#function) isPlaying: \(newValue)")
-            if newValue {
-                print("isPlaying 타이머 실행")
-                viewModel.action(.timer(.setTimer))
-            } else {
-                viewModel.action(.timer(.stopTimer))
-            }
-        }
         .onAppear {
-            print("상갑 logEvent \(#function) isPlaying onAppear")
+//            print("상갑 logEvent \(#function) isPlaying onAppear")
             viewModel.action(.wing(.setRotateAngle(getDegress(index: 0))))
-            viewModel.action(.timer(.setTimer))
+//            viewModel.action(.timer(.setTimer))
         }
     }
 }
@@ -91,7 +66,7 @@ public extension RefreshIndicator {
         view.viewModel.action(.timer(.setSpeed(duration)))
         return view
     }
-    
+    @available(*, deprecated, message: "멈추고 플레이 안되는 문제로 추후 재개발")
     func controlIndicator(state: Bool) -> RefreshIndicator {
         let view: RefreshIndicator = self
         print("상갑 logEvent \(#function) state: \(state)")
@@ -131,23 +106,11 @@ extension RefreshIndicator {
     }
 }
 
-@available(iOS 18.0, *)
 #Preview {
-    
-    @Previewable @State var isPlaying: Bool = true
-    
-    Text("hi232113")
-        .foregroundColor(Color.red)
-        .padding(.bottom, 50)
-        .onTapGesture {
-            isPlaying.toggle()
-        }
-    
     RefreshIndicator()
         .strokeStyle(style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
-        .setAngle(angle: 45)
-        .setSpeed(duration: 0.05)
-        .controlIndicator(state: isPlaying)
+        .setAngle(angle: 36)
+        .setSpeed(duration: 0.5)
+        .controlIndicator(state: true)
         .frame(width: 50, height: 50)
-//        .foregroundColor(Color.green)
 }
