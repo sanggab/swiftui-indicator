@@ -190,4 +190,9 @@ extension TestShapeViewModel: TestShapeFeatures {
         
         return (movePoint, addLinePoint)
     }
+    
+    public func labAngle() {
+        let angle = self(\.wingState).angle
+        print("상갑 logEvent \(#function) angle: \(angle)")
+    }
 }
