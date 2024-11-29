@@ -56,6 +56,7 @@ public class TestShapeViewModel: TestGabReducer {
         public var rotateAngle: Double = 45.0
         public var wingCount: Int = 8
         public var isPlaying: Bool = true
+        public var redifinitionAngleMode: TestRedefinitionAngleOption = .round
     }
     
     public struct State: Equatable {
@@ -77,6 +78,7 @@ public class TestShapeViewModel: TestGabReducer {
         
         public enum Wing: Equatable {
             case setAngle(Double)
+            case redifinitionAngle(Double)
             case setStyle(StrokeStyle)
             case setRotateAngle(Double)
             case setWingCount(Int)
@@ -121,11 +123,18 @@ public class TestShapeViewModel: TestGabReducer {
                 self.wingAction(.setRotateAngle(angle))
             }
             
-            self.labAngle()
+            let wingCount = Int(abs(360 / self(\.wingState.angle)))
             
-//            let wingCount = Int(abs(360 / self(\.wingState.angle)))
-//            
-//            self.wingAction(.setWingCount(wingCount))
+            self.wingAction(.setWingCount(wingCount))
+            
+        case .redifinitionAngle(let angle):
+            let redifinitionAngle = redifinitionAngle(angle: angle)
+            
+            self.update(\.wingState.angle, newValue: redifinitionAngle)
+            
+            if redifinitionAngle != self(\.wingState.rotateAngle) {
+                self.wingAction(.setRotateAngle(redifinitionAngle))
+            }
             
         case .setStyle(let strokeStyle):
             self.update(\.wingState.strokeStyle, newValue: strokeStyle)
@@ -194,27 +203,31 @@ extension TestShapeViewModel: TestShapeFeatures {
     }
     
     // 360으로 안떨어지는 angle이 들어온 경우에 결국은 angle을 재정립시켜줄 필요가 있음.
-    public func labAngle() {
-        let angle = self(\.wingState).angle
-        print("상갑 logEvent \(#function) angle: \(angle)")
-        // wgCount가 소수점으로 떨어진 경우, 어떻게 처리할 것 인가.. ceil / round / floor / trunc
-        let wgCount = 360 / angle
-        print("상갑 logEvent \(#function) wgCount: \(wgCount)")
-        let ceilWGCount = ceil(wgCount)
-        print("상갑 logEvent \(#function) ceilWGCount: \(ceilWGCount)")
-        
-        let newAngle = 360 / ceilWGCount
+    public func redifinitionAngle(angle: Double) -> Double {
+        let newWingCount = redifinitionWingCount(count: 360 / angle)
+        print("상갑 logEvent \(#function) newWingCount: \(newWingCount)")
+        self.action(.wing(.setWingCount(newWingCount)))
+        let newAngle: Double = Double(360 / newWingCount)
         print("상갑 logEvent \(#function) newAngle: \(newAngle)")
+        return newAngle
+    }
+    
+    private func redifinitionWingCount(count: Double) -> Int {
+        var redifiCount: Double = count
         
-        let firstPointAngle = -(90 + newAngle)
+        switch self(\.wingState.redifinitionAngleMode) {
+        case .ceil:
+            redifiCount = ceil(count)
+        case .round:
+            redifiCount = round(count)
+        case .floor:
+            redifiCount = floor(count)
+        case .trunc:
+            redifiCount = trunc(count)
+        default:
+            break
+        }
         
-        print("상갑 logEvent \(#function) firstPointAngle: \(firstPointAngle)")
-        
-        self.wingAction(.setAngle(newAngle))
-        
-//        let test = wgCount * angle
-//        print("상갑 logEvent \(#function) test: \(test)")
-        
-        
+        return Int(redifiCount)
     }
 }

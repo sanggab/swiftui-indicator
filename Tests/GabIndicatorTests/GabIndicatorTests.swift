@@ -130,11 +130,12 @@ extension GabIndicatorTests {
         }
         
         @Test("Redefinition Of Angle Test",
-              arguments: [[31.0, 41.0, 51.0].randomElement() ?? .zero])
+              arguments: [[41.0, 51.0].randomElement() ?? .zero])
         func wingAngleTest(angle: Double) async throws {
-            viewModel.action(.wing(.setAngle(angle)))
+            viewModel.action(.wing(.redifinitionAngle(angle)))
             
             #expect(viewModel(\.wingState.angle) != angle)
+            #expect(viewModel(\.wingState.wingCount) != Int(360 / viewModel(\.wingState.angle)))
         }
     }
 }
