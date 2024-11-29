@@ -39,8 +39,7 @@ public struct RefreshIndicator: View {
             viewModel.action(.wing(.setRotateAngle(currentAngle)))
         }
         .onAppear {
-//            print("상갑 logEvent \(#function) isPlaying onAppear")
-            viewModel.action(.wing(.setRotateAngle(getDegress(index: 0))))
+//            viewModel.action(.wing(.setRotateAngle(getDegress(index: 0))))
 //            viewModel.action(.timer(.setTimer))
         }
     }
@@ -57,6 +56,12 @@ public extension RefreshIndicator {
     func setAngle(angle: Double) -> RefreshIndicator {
         let view: RefreshIndicator = self
         view.viewModel.action(.wing(.setAngle(angle)))
+        return view
+    }
+    
+    func setRedefinitionAngle(angle: Double) -> RefreshIndicator {
+        let view: RefreshIndicator = self
+        view.viewModel.action(.wing(.redefinitionAngle(angle)))
         return view
     }
     
@@ -109,8 +114,9 @@ extension RefreshIndicator {
 #Preview {
     RefreshIndicator()
         .strokeStyle(style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
-        .setAngle(angle: 36)
-        .setSpeed(duration: 0.5)
+//        .setAngle(angle: 36)
+        .setRedefinitionAngle(angle: 34)
+        .setSpeed(duration: 0.1)
         .controlIndicator(state: true)
         .frame(width: 50, height: 50)
 }

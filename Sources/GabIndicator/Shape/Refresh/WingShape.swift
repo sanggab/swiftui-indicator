@@ -22,8 +22,8 @@ struct WingShape: Shape {
         Path { path in
             let radians = degress * .pi / 180
             let shapePoint = TrigonometricCalculator.default.makeShapePoints(in: rect, radians: radians)
-            print("상갑 logEvent \(#function) degress: \(degress)")
-            print("상갑 logEvent \(#function) shapePoint: \(shapePoint)")
+//            print("상갑 logEvent \(#function) degress: \(degress)")
+//            print("상갑 logEvent \(#function) shapePoint: \(shapePoint)")
             path.move(to: shapePoint.Move.toCGPoint())
             path.addLine(to: shapePoint.Add.toCGPoint())
             

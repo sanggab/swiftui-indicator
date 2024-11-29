@@ -56,7 +56,7 @@ public class TestShapeViewModel: TestGabReducer {
         public var rotateAngle: Double = 45.0
         public var wingCount: Int = 8
         public var isPlaying: Bool = true
-        public var redifinitionAngleMode: TestRedefinitionAngleOption = .round
+        public var redefinitionAngleMode: TestRedefinitionAngleOption = .round
     }
     
     public struct State: Equatable {
@@ -78,7 +78,7 @@ public class TestShapeViewModel: TestGabReducer {
         
         public enum Wing: Equatable {
             case setAngle(Double)
-            case redifinitionAngle(Double)
+            case redefinitionAngle(Double)
             case setStyle(StrokeStyle)
             case setRotateAngle(Double)
             case setWingCount(Int)
@@ -127,7 +127,7 @@ public class TestShapeViewModel: TestGabReducer {
             
             self.wingAction(.setWingCount(wingCount))
             
-        case .redifinitionAngle(let angle):
+        case .redefinitionAngle(let angle):
             let redifinitionAngle = redifinitionAngle(angle: angle)
             
             self.update(\.wingState.angle, newValue: redifinitionAngle)
@@ -205,17 +205,17 @@ extension TestShapeViewModel: TestShapeFeatures {
     // 360으로 안떨어지는 angle이 들어온 경우에 결국은 angle을 재정립시켜줄 필요가 있음.
     public func redifinitionAngle(angle: Double) -> Double {
         let newWingCount = redifinitionWingCount(count: 360 / angle)
-        print("상갑 logEvent \(#function) newWingCount: \(newWingCount)")
-        self.action(.wing(.setWingCount(newWingCount)))
-        let newAngle: Double = Double(360 / newWingCount)
-        print("상갑 logEvent \(#function) newAngle: \(newAngle)")
+        
+        self.action(.wing(.setWingCount(Int(newWingCount))))
+        let newAngle: Double = 360 / newWingCount
+        
         return newAngle
     }
     
-    private func redifinitionWingCount(count: Double) -> Int {
+    private func redifinitionWingCount(count: Double) -> Double {
         var redifiCount: Double = count
         
-        switch self(\.wingState.redifinitionAngleMode) {
+        switch self(\.wingState.redefinitionAngleMode) {
         case .ceil:
             redifiCount = ceil(count)
         case .round:
@@ -228,6 +228,6 @@ extension TestShapeViewModel: TestShapeFeatures {
             break
         }
         
-        return Int(redifiCount)
+        return redifiCount
     }
 }

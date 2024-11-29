@@ -57,6 +57,7 @@ final class ShapeViewModel: GabReducer {
         var rotateAngle: Double = 45.0
         var wingCount: Int = 8
         var isPlaying: Bool = true
+        var redefinitionAngleMode: RedefinitionDecimals = .round
     }
     
     struct State: Equatable {
@@ -78,6 +79,7 @@ final class ShapeViewModel: GabReducer {
         
         enum Wing: Equatable {
             case setAngle(Double)
+            case redefinitionAngle(Double)
             case setStyle(StrokeStyle)
             case setRotateAngle(Double)
             case setWingCount(Int)
@@ -122,11 +124,17 @@ final class ShapeViewModel: GabReducer {
                 self.wingAction(.setRotateAngle(angle))
             }
             
-            let cal = 360 / self(\.wingState.angle)
-            print("상갑 logEvent \(#function) cal: \(cal)")
-            
             let wingCount = Int(abs(360 / self(\.wingState.angle)))
+            
             self.wingAction(.setWingCount(wingCount))
+        case .redefinitionAngle(let angle):
+            let redifinitionAngle = self.redifinitionAngle(angle: angle)
+            print("상갑 logEvent \(#function) redifinitionAngle: \(redifinitionAngle)")
+            self.update(\.wingState.angle, newValue: redifinitionAngle)
+            
+            if redifinitionAngle != self(\.wingState.rotateAngle) {
+                self.wingAction(.setRotateAngle(redifinitionAngle))
+            }
         case .setStyle(let strokeStyle):
             self.update(\.wingState.strokeStyle, newValue: strokeStyle)
         case .setRotateAngle(let angle):
@@ -154,5 +162,34 @@ extension ShapeViewModel {
     
     private func stopTimer() {
         self.state.timerState.stopTimer()
+    }
+    
+    private func redifinitionAngle(angle: Double) -> Double {
+        let newWingCount = redifinitionWingCount(count: 360 / angle)
+        print("상갑 logEvent \(#function) newWingCount: \(newWingCount)")
+        self.action(.wing(.setWingCount(Int(newWingCount))))
+        
+        let newAngle: Double = 360 / newWingCount
+        
+        return newAngle
+    }
+    
+    private func redifinitionWingCount(count: Double) -> Double {
+        var redifiCount: Double = count
+        
+        switch self(\.wingState.redefinitionAngleMode) {
+        case .ceil:
+            redifiCount = ceil(count)
+        case .round:
+            redifiCount = round(count)
+        case .floor:
+            redifiCount = floor(count)
+        case .trunc:
+            redifiCount = trunc(count)
+        default:
+            break
+        }
+        
+        return redifiCount
     }
 }
