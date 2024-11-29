@@ -129,10 +129,12 @@ extension GabIndicatorTests {
             #expect(!viewModel(\.wingState.isPlaying))
         }
         
-        @Test("Angle With AngleCount Test",
+        @Test("Redefinition Of Angle Test",
               arguments: [[31.0, 41.0, 51.0].randomElement() ?? .zero])
         func wingAngleTest(angle: Double) async throws {
             viewModel.action(.wing(.setAngle(angle)))
+            
+            #expect(viewModel(\.wingState.angle) != angle)
         }
     }
 }

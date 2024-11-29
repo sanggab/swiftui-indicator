@@ -121,9 +121,11 @@ public class TestShapeViewModel: TestGabReducer {
                 self.wingAction(.setRotateAngle(angle))
             }
             
-            let wingCount = Int(abs(360 / self(\.wingState.angle)))
+            self.labAngle()
             
-            self.wingAction(.setWingCount(wingCount))
+//            let wingCount = Int(abs(360 / self(\.wingState.angle)))
+//            
+//            self.wingAction(.setWingCount(wingCount))
             
         case .setStyle(let strokeStyle):
             self.update(\.wingState.strokeStyle, newValue: strokeStyle)
@@ -191,8 +193,28 @@ extension TestShapeViewModel: TestShapeFeatures {
         return (movePoint, addLinePoint)
     }
     
+    // 360으로 안떨어지는 angle이 들어온 경우에 결국은 angle을 재정립시켜줄 필요가 있음.
     public func labAngle() {
         let angle = self(\.wingState).angle
         print("상갑 logEvent \(#function) angle: \(angle)")
+        // wgCount가 소수점으로 떨어진 경우, 어떻게 처리할 것 인가.. ceil / round / floor / trunc
+        let wgCount = 360 / angle
+        print("상갑 logEvent \(#function) wgCount: \(wgCount)")
+        let ceilWGCount = ceil(wgCount)
+        print("상갑 logEvent \(#function) ceilWGCount: \(ceilWGCount)")
+        
+        let newAngle = 360 / ceilWGCount
+        print("상갑 logEvent \(#function) newAngle: \(newAngle)")
+        
+        let firstPointAngle = -(90 + newAngle)
+        
+        print("상갑 logEvent \(#function) firstPointAngle: \(firstPointAngle)")
+        
+        self.wingAction(.setAngle(newAngle))
+        
+//        let test = wgCount * angle
+//        print("상갑 logEvent \(#function) test: \(test)")
+        
+        
     }
 }
