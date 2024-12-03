@@ -203,7 +203,7 @@ extension TestShapeViewModel: TestShapeFeatures {
     }
     
     // 360으로 안떨어지는 angle이 들어온 경우에 결국은 angle을 재정립시켜줄 필요가 있음.
-    public func redifinitionAngle(angle: Double) -> Double {
+    private func redifinitionAngle(angle: Double) -> Double {
         let newWingCount = redifinitionWingCount(count: 360 / angle)
         
         self.action(.wing(.setWingCount(Int(newWingCount))))

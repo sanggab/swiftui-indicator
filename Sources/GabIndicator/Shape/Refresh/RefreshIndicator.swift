@@ -39,6 +39,7 @@ public struct RefreshIndicator: View {
             viewModel.action(.wing(.setRotateAngle(currentAngle)))
         }
         .onAppear {
+            rotateAngle()
 //            viewModel.action(.wing(.setRotateAngle(getDegress(index: 0))))
 //            viewModel.action(.timer(.setTimer))
         }
@@ -109,14 +110,20 @@ extension RefreshIndicator {
             }
         }
     }
+    // rotate를 정하는 수단은 90도를 기준으로 현재 angle을 나눈 몫에 angle을 곱해주면 된다.
+    private func rotateAngle() {
+        let angle = viewModel(\.wingState.angle)
+        let newAngle = floor(90 / angle) * viewModel(\.wingState.angle)
+        viewModel.action(.wing(.setRotateAngle(-newAngle)))
+    }
 }
 
 #Preview {
     RefreshIndicator()
         .strokeStyle(style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
 //        .setAngle(angle: 36)
-        .setRedefinitionAngle(angle: 34)
-        .setSpeed(duration: 0.1)
+        .setRedefinitionAngle(angle: 30)
+        .setSpeed(duration: 0.08)
         .controlIndicator(state: true)
         .frame(width: 50, height: 50)
 }
