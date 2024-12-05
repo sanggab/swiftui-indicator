@@ -25,19 +25,11 @@ final class ShapeViewModel: GabReducer {
         var speed: Double = .zero
         
         mutating func setTimer() {
-//            print("상갑 logEvent \(#function)")
-            // MARK: Timer의 autoConnect의 장점은 멀까 - 어차피 every의 시간마다 호출되서 View가 Draw될 때 바로 onReceive에 구독되는 것도 아닌데..
             self.timer = Timer.publish(every: self.speed, on: .main, in: .default)
-            
-//            self.timer.sink { output in
-//                print("상갑 logEvent \(#function) output: \(output)")
-//            }.store(in: &cancellable)
-            
             self.timer.connect().store(in: &cancellable)
         }
         
         mutating func stopTimer() {
-//            print("상갑 logEvent \(#function)")
             self.cancellable.removeAll()
         }
         

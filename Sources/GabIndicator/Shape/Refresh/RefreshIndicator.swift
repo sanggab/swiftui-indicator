@@ -10,8 +10,6 @@ import SwiftUI
 public struct RefreshIndicator: View {
     @ObservedObject private var viewModel: ShapeViewModel = ShapeViewModel()
     
-    @State private var controlState: Bool = false
-    
     public init() { }
     
     public var body: some View {
@@ -40,7 +38,6 @@ public struct RefreshIndicator: View {
         }
         .onAppear {
             rotateAngle()
-//            viewModel.action(.wing(.setRotateAngle(getDegress(index: 0))))
 //            viewModel.action(.timer(.setTimer))
         }
     }
@@ -82,6 +79,7 @@ public extension RefreshIndicator {
 }
 
 extension RefreshIndicator {
+    @available(*, deprecated, renamed: "rotateAngle()", message: "360도로 안떨어지는 Angle에서 문제가 발생해서 deprecated")
     /// 현재 wing의 degress를 결정짓는 요소
     /// .rotationEffect의 역할
     private func getDegress(index: Int) -> Double {
@@ -122,7 +120,7 @@ extension RefreshIndicator {
     RefreshIndicator()
         .strokeStyle(style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
 //        .setAngle(angle: 36)
-        .setRedefinitionAngle(angle: 30)
+        .setRedefinitionAngle(angle: 40)
         .setSpeed(duration: 0.08)
         .controlIndicator(state: true)
         .frame(width: 50, height: 50)

@@ -53,6 +53,7 @@ public class TestShapeViewModel: TestGabReducer {
         public var strokeStyle: StrokeStyle = StrokeStyle(lineWidth: 2,
                                                           lineCap: .round,
                                                           lineJoin: .round)
+        public var startAngle: Double = 45.0
         public var rotateAngle: Double = 45.0
         public var wingCount: Int = 8
         public var isPlaying: Bool = true
@@ -80,6 +81,7 @@ public class TestShapeViewModel: TestGabReducer {
             case setAngle(Double)
             case redefinitionAngle(Double)
             case setStyle(StrokeStyle)
+            case setStartAngle(Double)
             case setRotateAngle(Double)
             case setWingCount(Int)
             case control(Bool)
@@ -138,6 +140,8 @@ public class TestShapeViewModel: TestGabReducer {
             
         case .setStyle(let strokeStyle):
             self.update(\.wingState.strokeStyle, newValue: strokeStyle)
+        case .setStartAngle(let angle):
+            self.update(\.wingState.startAngle, newValue: angle)
         case .setRotateAngle(let angle):
             self.update(\.wingState.rotateAngle, newValue: angle)
         case .setWingCount(let count):
