@@ -82,6 +82,8 @@ public class TestShapeViewModel: TestGabReducer {
             case redefinitionAngle(Double)
             case setStyle(StrokeStyle)
             case setStartAngle(Double)
+            case setRedefinitionAngle(Double)
+            case setRedefinitionAngleMode(TestRedefinitionAngleOption)
             case setRotateAngle(Double)
             case setWingCount(Int)
             case control(Bool)
@@ -130,7 +132,7 @@ public class TestShapeViewModel: TestGabReducer {
             self.wingAction(.setWingCount(wingCount))
             
         case .redefinitionAngle(let angle):
-            let redifinitionAngle = redifinitionAngle(angle: angle)
+            let redifinitionAngle = self.redifinitionAngle(angle: angle)
             
             self.update(\.wingState.angle, newValue: redifinitionAngle)
             
@@ -140,12 +142,28 @@ public class TestShapeViewModel: TestGabReducer {
             
         case .setStyle(let strokeStyle):
             self.update(\.wingState.strokeStyle, newValue: strokeStyle)
+            
         case .setStartAngle(let angle):
             self.update(\.wingState.startAngle, newValue: angle)
+            
+        case .setRedefinitionAngle(let angle):
+            let redifinitionAngle = self.redifinitionAngle(angle: angle)
+            
+            self.update(\.wingState.angle, newValue: redifinitionAngle)
+            
+            if redifinitionAngle != self(\.wingState.startAngle) {
+                self.wingAction(.setStartAngle(redifinitionAngle))
+            }
+            
+        case .setRedefinitionAngleMode(let mode):
+            self.update(\.wingState.redefinitionAngleMode, newValue: mode)
+            
         case .setRotateAngle(let angle):
             self.update(\.wingState.rotateAngle, newValue: angle)
+            
         case .setWingCount(let count):
             self.update(\.wingState.wingCount, newValue: count)
+            
         case .control(let status):
             self.update(\.wingState.isPlaying, newValue: status)
         }
@@ -208,7 +226,7 @@ extension TestShapeViewModel: TestShapeFeatures {
     
     // 360으로 안떨어지는 angle이 들어온 경우에 결국은 angle을 재정립시켜줄 필요가 있음.
     private func redifinitionAngle(angle: Double) -> Double {
-        let newWingCount = redifinitionWingCount(count: 360 / angle)
+        let newWingCount = self.redifinitionWingCount(count: 360 / angle)
         
         self.action(.wing(.setWingCount(Int(newWingCount))))
         let newAngle: Double = 360 / newWingCount

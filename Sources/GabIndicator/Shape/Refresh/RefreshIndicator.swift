@@ -20,24 +20,24 @@ public struct RefreshIndicator: View {
     private var main: some View {
         ZStack {
             ForEach(0..<viewModel(\.wingState.wingCount), id: \.self) { index in
-                WingShape(degress: viewModel(\.wingState.rotateAngle))
+                WingShape(degress: viewModel(\.wingState.startAngle))
                     .stroke(style: viewModel(\.wingState.strokeStyle))
                     .rotationEffect(.degrees(viewModel(\.wingState.angle)) * Double(index))
                     .opacity(getOpacity(index: index))
             }
         }
         .onReceive(viewModel(\.timerState).timer) { _ in
-            var currentAngle = viewModel(\.wingState.rotateAngle)
+            var currentAngle = viewModel(\.wingState.startAngle)
             if currentAngle == 360.0 {
                 currentAngle = viewModel(\.wingState.angle)
             } else {
                 currentAngle += viewModel(\.wingState.angle)
             }
             
-            viewModel.action(.wing(.setRotateAngle(currentAngle)))
+            viewModel.action(.wing(.setStartAngle(currentAngle)))
         }
         .onAppear {
-            rotateAngle()
+            setStartAngle()
 //            viewModel.action(.timer(.setTimer))
         }
     }
@@ -59,29 +59,27 @@ public extension RefreshIndicator {
     
     func setRedefinitionAngle(angle: Double) -> RefreshIndicator {
         let view: RefreshIndicator = self
-        view.viewModel.action(.wing(.redefinitionAngle(angle)))
+        view.viewModel.action(.wing(.setRedefinitionAngle(angle)))
         return view
     }
     
     func setSpeed(duration: Double) -> RefreshIndicator {
         let view: RefreshIndicator = self
-        print("상갑 logEvent \(#function)")
         view.viewModel.action(.timer(.setSpeed(duration)))
         return view
     }
     @available(*, deprecated, message: "멈추고 플레이 안되는 문제로 추후 재개발")
     func controlIndicator(state: Bool) -> RefreshIndicator {
         let view: RefreshIndicator = self
-        print("상갑 logEvent \(#function) state: \(state)")
         view.viewModel.action(.wing(.control(state)))
         return view
     }
 }
 
 extension RefreshIndicator {
-    @available(*, deprecated, renamed: "rotateAngle()", message: "360도로 안떨어지는 Angle에서 문제가 발생해서 deprecated")
     /// 현재 wing의 degress를 결정짓는 요소
     /// .rotationEffect의 역할
+    @available(*, deprecated, renamed: "rotateAngle()", message: "360도로 안떨어지는 Angle에서 문제가 발생해서 deprecated")
     private func getDegress(index: Int) -> Double {
         /// 원래대로 그린다면 정해지는 Angle
         let currentAngle = (viewModel(\.wingState.angle) * Double(index))
@@ -109,10 +107,10 @@ extension RefreshIndicator {
         }
     }
     // rotate를 정하는 수단은 90도를 기준으로 현재 angle을 나눈 몫에 angle을 곱해주면 된다.
-    private func rotateAngle() {
+    private func setStartAngle() {
         let angle = viewModel(\.wingState.angle)
         let newAngle = floor(90 / angle) * viewModel(\.wingState.angle)
-        viewModel.action(.wing(.setRotateAngle(-newAngle)))
+        viewModel.action(.wing(.setStartAngle(-newAngle)))
     }
 }
 

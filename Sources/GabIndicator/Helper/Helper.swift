@@ -41,7 +41,6 @@ final class TrigonometricCalculator: ShapePointFeatures {
     }
     @usableFromInline
     func makeShapePoints(in rect: CGRect, radians: Double) -> ShapePointFeatures.ShapePoints {
-//        print("상갑 logEvent \(#function) radians: \(radians)")
         let movePoint = self.makeMovePoint(in: rect, radians: radians)
         let addLinePoint = self.makeAddLinePoint(in: rect, radians: radians, movePoint: movePoint)
         

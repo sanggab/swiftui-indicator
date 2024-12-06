@@ -47,9 +47,15 @@ final class ShapeViewModel: GabReducer {
                                                           lineCap: .round,
                                                           lineJoin: .round)
         var rotateAngle: Double = 45.0
+        
+        var startAngle: Double = 45.0
+        
         var wingCount: Int = 8
-        var isPlaying: Bool = true
+        
         var redefinitionAngleMode: RedefinitionDecimals = .round
+        
+        @available(*, deprecated, message: "잠정 샷다운")
+        var isPlaying: Bool = true
     }
     
     struct State: Equatable {
@@ -71,10 +77,17 @@ final class ShapeViewModel: GabReducer {
         
         enum Wing: Equatable {
             case setAngle(Double)
-            case redefinitionAngle(Double)
-            case setStyle(StrokeStyle)
             case setRotateAngle(Double)
+            case redefinitionAngle(Double)
+            
+            case setStartAngle(Double)
+            case setRedefinitionAngle(Double)
+            case setRedefinitionAngleMode(RedefinitionDecimals)
+            
+            case setStyle(StrokeStyle)
             case setWingCount(Int)
+            
+            @available(*, deprecated, message: "잠정 샷다운")
             case control(Bool)
         }
     }
@@ -82,7 +95,6 @@ final class ShapeViewModel: GabReducer {
     @Published private var state: State = .init()
     
     func action(_ action: Action) {
-//        print("상갑 logEvent \(#function) action: \(action)")
         switch action {
         case .timer(let timerAC):
             self.timerAction(timerAC)
@@ -92,7 +104,6 @@ final class ShapeViewModel: GabReducer {
     }
     
     private func timerAction(_ action: Action.Timer) {
-//        print("상갑 logEvent \(#function) action: \(action)")
         switch action {
         case .setSpeed(let speed):
             self.update(\.timerState.speed, newValue: speed)
@@ -107,7 +118,6 @@ final class ShapeViewModel: GabReducer {
     }
     
     private func wingAction(_ action: Action.Wing) {
-//        print("상갑 logEvent \(#function) action: \(action)")
         switch action {
         case .setAngle(let angle):
             self.update(\.wingState.angle, newValue: angle)
@@ -119,20 +129,39 @@ final class ShapeViewModel: GabReducer {
             let wingCount = Int(abs(360 / self(\.wingState.angle)))
             
             self.wingAction(.setWingCount(wingCount))
+            
         case .redefinitionAngle(let angle):
             let redifinitionAngle = self.redifinitionAngle(angle: angle)
-            print("상갑 logEvent \(#function) redifinitionAngle: \(redifinitionAngle)")
             self.update(\.wingState.angle, newValue: redifinitionAngle)
             
             if redifinitionAngle != self(\.wingState.rotateAngle) {
                 self.wingAction(.setRotateAngle(redifinitionAngle))
             }
+            
+        case .setStartAngle(let angle):
+            self.update(\.wingState.startAngle, newValue: angle)
+            
+        case .setRedefinitionAngle(let angle):
+            let redifinitionAngle = self.redifinitionAngle(angle: angle)
+            
+            self.update(\.wingState.angle, newValue: redifinitionAngle)
+            
+            if redifinitionAngle != self(\.wingState.startAngle) {
+                self.wingAction(.setStartAngle(redifinitionAngle))
+            }
+            
+        case .setRedefinitionAngleMode(let mode):
+            self.update(\.wingState.redefinitionAngleMode, newValue: mode)
+            
         case .setStyle(let strokeStyle):
             self.update(\.wingState.strokeStyle, newValue: strokeStyle)
+            
         case .setRotateAngle(let angle):
             self.update(\.wingState.rotateAngle, newValue: angle)
+            
         case .setWingCount(let count):
             self.update(\.wingState.wingCount, newValue: count)
+            
         case .control(let status):
             self.update(\.wingState.isPlaying, newValue: status)
         }
@@ -157,8 +186,7 @@ extension ShapeViewModel {
     }
     
     private func redifinitionAngle(angle: Double) -> Double {
-        let newWingCount = redifinitionWingCount(count: 360 / angle)
-        print("상갑 logEvent \(#function) newWingCount: \(newWingCount)")
+        let newWingCount = self.redifinitionWingCount(count: 360 / angle)
         self.action(.wing(.setWingCount(Int(newWingCount))))
         
         let newAngle: Double = 360 / newWingCount

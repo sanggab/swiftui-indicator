@@ -129,6 +129,21 @@ extension GabIndicatorTests {
             #expect(!viewModel(\.wingState.isPlaying))
         }
         
+        
+        @Test("Redefinition Mode Test")
+        func redefinitionModeTest() async throws {
+            try #require(viewModel(\.wingState.redefinitionAngleMode) == .round)
+            
+            viewModel.action(.wing(.setRedefinitionAngleMode(.ceil)))
+            #expect(viewModel(\.wingState.redefinitionAngleMode) == .ceil)
+            
+            viewModel.action(.wing(.setRedefinitionAngleMode(.floor)))
+            #expect(viewModel(\.wingState.redefinitionAngleMode) == .floor)
+            
+            viewModel.action(.wing(.setRedefinitionAngleMode(.trunc)))
+            #expect(viewModel(\.wingState.redefinitionAngleMode) == .trunc)
+        }
+        
         @Test("Redefinition Of Angle Test",
               arguments: [[41.0, 51.0].randomElement() ?? .zero])
         func wingAngleTest(angle: Double) async throws {
@@ -144,7 +159,14 @@ extension GabIndicatorTests {
             viewModel.action(.wing(.setStartAngle(angle)))
             
             #expect(viewModel(\.wingState.startAngle) == angle)
+        }
+        
+        @Test("setRedefinitionAngle Test",
+              arguments: [[31.0, 56.0, 72.0, 102.0].randomElement() ?? .zero])
+        func setRedefinitionAngleTest(angle: Double) async throws {
+            viewModel.action(.wing(.setRedefinitionAngle(angle)))
             
+            #expect(viewModel(\.wingState.angle) != angle)
         }
     }
 }
