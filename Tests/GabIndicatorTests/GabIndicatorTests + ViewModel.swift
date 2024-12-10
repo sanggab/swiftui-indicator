@@ -8,23 +8,23 @@
 import SwiftUI
 import Combine
 
-public class TestShapeViewModel: TestGabReducer {
+final class TestShapeViewModel: TestGabReducer {
     
-    public struct TimerState: Equatable {
-        public static func == (lhs: TestShapeViewModel.TimerState, rhs: TestShapeViewModel.TimerState) -> Bool {
+    struct TimerState: Equatable {
+        static func == (lhs: TestShapeViewModel.TimerState, rhs: TestShapeViewModel.TimerState) -> Bool {
             return lhs.speed == rhs.speed &&
             lhs.cancellable == rhs.cancellable
         }
         
-        public init() {
+        init() {
             self.timer = Timer.publish(every: self.speed, on: .main, in: .default)
         }
         
-        public var timer: Timer.TimerPublisher
+        var timer: Timer.TimerPublisher
         private var cancellable: Set<AnyCancellable> = []
-        public var speed: Double = .zero
+        var speed: Double = .zero
         
-        mutating public func setTimer() {
+        mutating func setTimer() {
             print("상갑 logEvent \(#function)")
             // MARK: Timer의 autoConnect의 장점은 멀까 - 어차피 every의 시간마다 호출되서 View가 Draw될 때 바로 onReceive에 구독되는 것도 아닌데..
             self.timer = Timer.publish(every: self.speed, on: .main, in: .default)
@@ -36,7 +36,7 @@ public class TestShapeViewModel: TestGabReducer {
             self.timer.connect().store(in: &cancellable)
         }
         
-        mutating public func stopTimer() {
+        mutating func stopTimer() {
             print("상갑 logEvent \(#function)")
             self.cancellable.removeAll()
         }
@@ -46,38 +46,38 @@ public class TestShapeViewModel: TestGabReducer {
         }
     }
     
-    public struct WingState: Equatable {
-        public init () { }
+    struct WingState: Equatable {
+        init () { }
         
-        public var angle: Double = 45.0
-        public var strokeStyle: StrokeStyle = StrokeStyle(lineWidth: 2,
+        var angle: Double = 45.0
+        var strokeStyle: StrokeStyle = StrokeStyle(lineWidth: 2,
                                                           lineCap: .round,
                                                           lineJoin: .round)
-        public var startAngle: Double = 45.0
-        public var rotateAngle: Double = 45.0
-        public var wingCount: Int = 8
-        public var isPlaying: Bool = true
-        public var redefinitionAngleMode: TestRedefinitionAngleOption = .round
+        var startAngle: Double = 45.0
+        var rotateAngle: Double = 45.0
+        var wingCount: Int = 8
+        var isPlaying: Bool = true
+        var redefinitionAngleMode: TestRedefinitionAngleOption = .round
     }
     
-    public struct State: Equatable {
-        public init () { }
+    struct State: Equatable {
+        init () { }
         
-        public var timerState: TimerState = .init()
-        public var wingState: WingState = .init()
+        var timerState: TimerState = .init()
+        var wingState: WingState = .init()
     }
     
-    public enum Action: Equatable {
+    enum Action: Equatable {
         case timer(Action.Timer)
         case wing(Action.Wing)
         
-        public enum Timer: Equatable {
+        enum Timer: Equatable {
             case setSpeed(Double)
             case setTimer
             case stopTimer
         }
         
-        public enum Wing: Equatable {
+        enum Wing: Equatable {
             case setAngle(Double)
             case redefinitionAngle(Double)
             case setStyle(StrokeStyle)
@@ -92,7 +92,7 @@ public class TestShapeViewModel: TestGabReducer {
     
     @Published private var state: State = .init()
     
-    public func action(_ action: Action) {
+    func action(_ action: Action) {
         print("상갑 logEvent \(#function) action: \(action)")
         switch action {
         case .timer(let timerAC):
@@ -171,7 +171,7 @@ public class TestShapeViewModel: TestGabReducer {
 }
 
 extension TestShapeViewModel {
-    public func callAsFunction<V>(_ keyPath: KeyPath<State, V>) -> V where V : Equatable {
+    func callAsFunction<V>(_ keyPath: KeyPath<State, V>) -> V where V : Equatable {
         return self.state[keyPath: keyPath]
     }
     
@@ -190,16 +190,16 @@ extension TestShapeViewModel {
 
 // MARK: Point Calculate
 extension TestShapeViewModel: TestShapeFeatures {
-    @inlinable
-    public func makeMovePoint(in rect: CGRect, radians: Double) -> TestRefreshShapeMovePoint {
+    @usableFromInline
+    func makeMovePoint(in rect: CGRect, radians: Double) -> TestRefreshShapeMovePoint {
         let x = (rect.width / 2) + ((rect.width / 2) * cos(radians))
         let y = (rect.height / 2) + ((rect.height / 2) * sin(radians))
         
         return TestRefreshShapeMovePoint(x: x,
                                          y: y)
     }
-    @inlinable
-    public func makeAddLinePoint(in rect: CGRect, radians: Double) -> TestRefreshShapeAddLinePoint {
+    @usableFromInline
+    func makeAddLinePoint(in rect: CGRect, radians: Double) -> TestRefreshShapeAddLinePoint {
         let movePoint = self.makeMovePoint(in: rect, radians: radians)
         
         let x = movePoint.x + ((rect.width / 2) * cos(radians))
@@ -208,16 +208,16 @@ extension TestShapeViewModel: TestShapeFeatures {
         return TestRefreshShapeAddLinePoint(x: x,
                                             y: y)
     }
-    @inlinable
-    public func makeAddLinePoint(in rect: CGRect, radians: Double, movePoint: TestRefreshShapeMovePoint) -> TestRefreshShapeAddLinePoint {
+    @usableFromInline
+    func makeAddLinePoint(in rect: CGRect, radians: Double, movePoint: TestRefreshShapeMovePoint) -> TestRefreshShapeAddLinePoint {
         let x = movePoint.x + ((rect.width / 2) * cos(radians))
         let y = movePoint.y + ((rect.height / 2) * sin(radians))
         
         return TestRefreshShapeAddLinePoint(x: x,
                                             y: y)
     }
-    @inlinable
-    public func makeShapePoints(in rect: CGRect, radians: Double) -> TestShapeFeatures.TestShapePoints {
+    @usableFromInline
+    func makeShapePoints(in rect: CGRect, radians: Double) -> TestShapeFeatures.TestShapePoints {
         let movePoint = self.makeMovePoint(in: rect, radians: radians)
         let addLinePoint = self.makeAddLinePoint(in: rect, radians: radians, movePoint: movePoint)
         

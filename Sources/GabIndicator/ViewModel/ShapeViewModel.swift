@@ -40,26 +40,29 @@ final class ShapeViewModel: GabReducer {
     
     
     struct WingState: Equatable {
-        init () { }
+        init() { }
         
         var angle: Double = 45.0
-        var strokeStyle: StrokeStyle = StrokeStyle(lineWidth: 2,
-                                                          lineCap: .round,
-                                                          lineJoin: .round)
-        var rotateAngle: Double = 45.0
-        
         var startAngle: Double = 45.0
         
         var wingCount: Int = 8
         
-        var redefinitionAngleMode: RedefinitionDecimals = .round
+        var redefinitionAngleMode: RedefinitionDecimals = .none
+        
+        var strokeStyle: StrokeStyle = StrokeStyle(lineWidth: 2,
+                                                          lineCap: .round,
+                                                          lineJoin: .round)
+        
+        @available(*, deprecated, renamed: "startAngle", message: "startAngle로 대체")
+        var rotateAngle: Double = 45.0
         
         @available(*, deprecated, message: "잠정 샷다운")
         var isPlaying: Bool = true
     }
     
+    /// hi
     struct State: Equatable {
-        init () { }
+        init() { }
         
         var timerState: TimerState = .init()
         var wingState: WingState = .init()
@@ -77,15 +80,18 @@ final class ShapeViewModel: GabReducer {
         
         enum Wing: Equatable {
             case setAngle(Double)
-            case setRotateAngle(Double)
-            case redefinitionAngle(Double)
+            case setStyle(StrokeStyle)
+            case setWingCount(Int)
             
             case setStartAngle(Double)
             case setRedefinitionAngle(Double)
             case setRedefinitionAngleMode(RedefinitionDecimals)
             
-            case setStyle(StrokeStyle)
-            case setWingCount(Int)
+            @available(*, deprecated, message: "setStartAngle(Double)로 대체")
+            case setRotateAngle(Double)
+            
+            @available(*, deprecated, message: "setRedefinitionAngle(Double)로 대체")
+            case redefinitionAngle(Double)
             
             @available(*, deprecated, message: "잠정 샷다운")
             case control(Bool)
@@ -122,20 +128,11 @@ final class ShapeViewModel: GabReducer {
         case .setAngle(let angle):
             self.update(\.wingState.angle, newValue: angle)
             
-            if angle != self(\.wingState.rotateAngle) {
-                self.wingAction(.setRotateAngle(angle))
-            }
-            
-            let wingCount = Int(abs(360 / self(\.wingState.angle)))
-            
-            self.wingAction(.setWingCount(wingCount))
-            
-        case .redefinitionAngle(let angle):
-            let redifinitionAngle = self.redifinitionAngle(angle: angle)
-            self.update(\.wingState.angle, newValue: redifinitionAngle)
-            
-            if redifinitionAngle != self(\.wingState.rotateAngle) {
-                self.wingAction(.setRotateAngle(redifinitionAngle))
+            if self(\.wingState.redefinitionAngleMode) == .none {
+                
+                let wingCount = Int(abs(360 / self(\.wingState.angle)))
+                
+                self.wingAction(.setWingCount(wingCount))
             }
             
         case .setStartAngle(let angle):
@@ -146,24 +143,31 @@ final class ShapeViewModel: GabReducer {
             
             self.update(\.wingState.angle, newValue: redifinitionAngle)
             
-            if redifinitionAngle != self(\.wingState.startAngle) {
-                self.wingAction(.setStartAngle(redifinitionAngle))
-            }
-            
         case .setRedefinitionAngleMode(let mode):
             self.update(\.wingState.redefinitionAngleMode, newValue: mode)
             
         case .setStyle(let strokeStyle):
             self.update(\.wingState.strokeStyle, newValue: strokeStyle)
             
-        case .setRotateAngle(let angle):
-            self.update(\.wingState.rotateAngle, newValue: angle)
-            
         case .setWingCount(let count):
             self.update(\.wingState.wingCount, newValue: count)
             
-        case .control(let status):
-            self.update(\.wingState.isPlaying, newValue: status)
+        default:
+            break
+            
+//        case .setRotateAngle(let angle):
+//            self.update(\.wingState.rotateAngle, newValue: angle)
+//            
+//        case .redefinitionAngle(let angle):
+//            let redifinitionAngle = self.redifinitionAngle(angle: angle)
+//            self.update(\.wingState.angle, newValue: redifinitionAngle)
+//            
+//            if redifinitionAngle != self(\.wingState.rotateAngle) {
+//                self.wingAction(.setRotateAngle(redifinitionAngle))
+//            }
+//            
+//        case .control(let status):
+//            self.update(\.wingState.isPlaying, newValue: status)
         }
     }
 }

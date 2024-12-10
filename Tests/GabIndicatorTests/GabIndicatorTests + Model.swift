@@ -8,14 +8,13 @@
 import SwiftUI
 import Foundation
 
-@frozen
-public struct TestRefreshShapeMovePoint: Equatable {
-    public var x: CGFloat
-    public var y: CGFloat
+struct TestRefreshShapeMovePoint: Equatable {
+    var x: CGFloat
+    var y: CGFloat
     
-    public static let `default` = TestRefreshShapeMovePoint(x: .zero, y: .zero)
+    static let `default` = TestRefreshShapeMovePoint(x: .zero, y: .zero)
     
-    public init(x: CGFloat, y: CGFloat) {
+    init(x: CGFloat, y: CGFloat) {
         self.x = x
         self.y = y
     }
@@ -26,14 +25,13 @@ public struct TestRefreshShapeMovePoint: Equatable {
     }
 }
 
-@frozen
-public struct TestRefreshShapeAddLinePoint: Equatable {
-    public var x: CGFloat
-    public var y: CGFloat
+struct TestRefreshShapeAddLinePoint: Equatable {
+    var x: CGFloat
+    var y: CGFloat
     
-    public static let `default` = TestRefreshShapeAddLinePoint(x: .zero, y: .zero)
+    static let `default` = TestRefreshShapeAddLinePoint(x: .zero, y: .zero)
     
-    public init(x: CGFloat, y: CGFloat) {
+    init(x: CGFloat, y: CGFloat) {
         self.x = x
         self.y = y
     }
@@ -44,19 +42,18 @@ public struct TestRefreshShapeAddLinePoint: Equatable {
     }
 }
 
-@frozen
-public struct TestRedefinitionAngleOption: OptionSet {
-    public let rawValue: Int
+struct TestRedefinitionAngleOption: OptionSet {
+    let rawValue: Int
     
-    public init(rawValue: Int) {
+    init(rawValue: Int) {
         self.rawValue = rawValue
     }
     
-    public static let `ceil` = TestRedefinitionAngleOption(rawValue: 1 << 0)
+    static let `ceil` = TestRedefinitionAngleOption(rawValue: 1 << 0)
     
-    public static let `round` = TestRedefinitionAngleOption(rawValue: 1 << 1)
+    static let `round` = TestRedefinitionAngleOption(rawValue: 1 << 1)
     
-    public static let `floor` = TestRedefinitionAngleOption(rawValue: 1 << 2)
+    static let `floor` = TestRedefinitionAngleOption(rawValue: 1 << 2)
     
-    public static let `trunc` = TestRedefinitionAngleOption(rawValue: 1 << 3)
+    static let `trunc` = TestRedefinitionAngleOption(rawValue: 1 << 3)
 }

@@ -28,6 +28,7 @@ public struct RefreshIndicator: View {
         }
         .onReceive(viewModel(\.timerState).timer) { _ in
             var currentAngle = viewModel(\.wingState.startAngle)
+            
             if currentAngle == 360.0 {
                 currentAngle = viewModel(\.wingState.angle)
             } else {
@@ -38,7 +39,7 @@ public struct RefreshIndicator: View {
         }
         .onAppear {
             setStartAngle()
-//            viewModel.action(.timer(.setTimer))
+            viewModel.action(.timer(.setTimer))
         }
     }
 }
@@ -57,8 +58,9 @@ public extension RefreshIndicator {
         return view
     }
     
-    func setRedefinitionAngle(angle: Double) -> RefreshIndicator {
+    func setRedefinitionAngle(angle: Double, _ mode: RedefinitionDecimals = .round) -> RefreshIndicator {
         let view: RefreshIndicator = self
+        view.viewModel.action(.wing(.setRedefinitionAngleMode(mode)))
         view.viewModel.action(.wing(.setRedefinitionAngle(angle)))
         return view
     }
@@ -106,7 +108,7 @@ extension RefreshIndicator {
             }
         }
     }
-    // rotate를 정하는 수단은 90도를 기준으로 현재 angle을 나눈 몫에 angle을 곱해주면 된다.
+    // startAngle을 정하는 수단은 90도를 기준으로 현재 angle을 나눈 몫에 angle을 곱해주면 된다.
     private func setStartAngle() {
         let angle = viewModel(\.wingState.angle)
         let newAngle = floor(90 / angle) * viewModel(\.wingState.angle)
@@ -117,9 +119,9 @@ extension RefreshIndicator {
 #Preview {
     RefreshIndicator()
         .strokeStyle(style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
-//        .setAngle(angle: 36)
-        .setRedefinitionAngle(angle: 40)
+//        .setAngle(angle: 45)
+//        .setRedefinitionAngle(angle: 45)
         .setSpeed(duration: 0.08)
-        .controlIndicator(state: true)
+//        .controlIndicator(state: true)
         .frame(width: 50, height: 50)
 }

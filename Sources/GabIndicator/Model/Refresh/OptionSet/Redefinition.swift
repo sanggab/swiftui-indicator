@@ -7,18 +7,21 @@
 
 import SwiftUI
 
-struct RedefinitionDecimals: OptionSet {
-    let rawValue: Int
+@frozen
+public struct RedefinitionDecimals: OptionSet {
+    public let rawValue: Int
     
-    init(rawValue: Int) {
+    public init(rawValue: Int) {
         self.rawValue = rawValue
     }
     
-    static let `ceil` = RedefinitionDecimals(rawValue: 1 << 0)
+    public static let none = RedefinitionDecimals(rawValue: 0 << 0)
     
-    static let `round` = RedefinitionDecimals(rawValue: 1 << 1)
+    public static let `ceil` = RedefinitionDecimals(rawValue: 1 << 0)
     
-    static let `floor` = RedefinitionDecimals(rawValue: 1 << 2)
+    public static let `round` = RedefinitionDecimals(rawValue: 1 << 1)
     
-    static let `trunc` = RedefinitionDecimals(rawValue: 1 << 3)
+    public static let `floor` = RedefinitionDecimals(rawValue: 1 << 2)
+    
+    public static let `trunc` = RedefinitionDecimals(rawValue: 1 << 3)
 }
