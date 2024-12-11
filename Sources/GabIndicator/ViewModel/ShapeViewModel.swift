@@ -47,7 +47,7 @@ final class ShapeViewModel: GabReducer {
         
         var wingCount: Int = 8
         
-        var redefinitionAngleMode: RedefinitionDecimals = .none
+        var redefinitionAngleMode: RedefinitionDecimals = .round
         
         var strokeStyle: StrokeStyle = StrokeStyle(lineWidth: 2,
                                                           lineCap: .round,
@@ -126,10 +126,6 @@ final class ShapeViewModel: GabReducer {
     private func wingAction(_ action: Action.Wing) {
         switch action {
         case .setAngle(let angle):
-            if self(\.wingState.redefinitionAngleMode) != .none {
-                self.update(\.wingState.redefinitionAngleMode, newValue: .none)
-            }
-            
             self.update(\.wingState.angle, newValue: angle)
             
             let wingCount = Int(abs(360 / self(\.wingState.angle)))

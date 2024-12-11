@@ -43,7 +43,7 @@ public struct RefreshIndicator: View {
         }
         .onAppear {
             setStartAngle()
-//            viewModel.action(.timer(.setTimer))
+            viewModel.action(.timer(.setTimer))
         }
     }
 }
@@ -56,7 +56,7 @@ public extension RefreshIndicator {
     ///
     /// - parameter style: `Shape`의 `StrokeStyle` 입니다.
     ///
-    /// - Returns: ``RefreshIndicator``
+    /// - Returns: `RefreshIndicator`
     func strokeStyle(style: StrokeStyle) -> RefreshIndicator {
         let view: RefreshIndicator = self
         view.viewModel.action(.wing(.setStyle(style)))
@@ -68,20 +68,40 @@ public extension RefreshIndicator {
     ///
     /// 만약 360도로 나눈 값이 유리수로 떨어진 경우에, 정수로 변형시켜서 `line` 개수를 설정하기 때문에 UI가 이상해질 수 있습니다.
     ///
+    /// - parameter angle: 각도
+    ///
+    /// - returns: `RefreshIndicator`
+    ///
     /// - warning: ``setRedefinitionAngle(angle:_:)`` 하고 동시에 사용할 경우, 나중에 사용한 modifier가 적용됩니다.
     func setAngle(angle: Double) -> RefreshIndicator {
         let view: RefreshIndicator = self
         view.viewModel.action(.wing(.setAngle(angle)))
         return view
     }
-    
+    /// `RefreshIndicator`의 각 `line` 사이의 각도를 결정합니다.
+    ///
+    /// 360도를 기준으로 설정한 `angle`을 나눠서 나온 값을 ``RedefinitionDecimals`` 옵션에 따라 소수점 처리를 진행해서 `RefreshIndicator`의 `line` 개수를 설정합니다.
+    ///
+    /// - Parameters:
+    ///     - angle: 각도
+    ///     - mode: ``RedefinitionDecimals``
+    ///
+    /// - returns: `RefreshIndicator`
+    ///
+    /// - Note: ``setAngle(angle:)`` 하고 다른 점은 360도를 기준으로 설정한 `angle`을 나눴을 때, 유리수가 나와도 `angle`을 `redefinition`해서 UI가 자연스럽게 보이냐 안보이냐 차이 입니다.
+    ///
+    /// - warning: ``setAngle(angle:)`` 하고 동시에 사용할 경우, 나중에 사용한 modifier가 적용됩니다.
     func setRedefinitionAngle(angle: Double, _ mode: RedefinitionDecimals = .round) -> RefreshIndicator {
         let view: RefreshIndicator = self
         view.viewModel.action(.wing(.setRedefinitionAngleMode(mode)))
         view.viewModel.action(.wing(.setRedefinitionAngle(angle)))
         return view
     }
-    
+    /// `RefreshIndicator`의 애니메이션 속도를 설정합니다.
+    ///
+    /// - parameter duration: 시간
+    ///
+    /// - returns: `RefreshIndicator`
     func setSpeed(duration: Double) -> RefreshIndicator {
         let view: RefreshIndicator = self
         view.viewModel.action(.timer(.setSpeed(duration)))
@@ -136,7 +156,6 @@ extension RefreshIndicator {
 #Preview {
     RefreshIndicator()
         .strokeStyle(style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
-        .setAngle(angle: 36)
-        .setSpeed(duration: 0.08)
+        .setSpeed(duration: 0.1)
         .frame(width: 50, height: 50)
 }

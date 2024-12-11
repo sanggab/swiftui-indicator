@@ -13,6 +13,7 @@
                                                     lineCap: .round,
                                                     lineJoin: .round))
                     .setAngle(angle: 36)
+                    .frame(width: 50, height: 50)
                 ```
             }
             
@@ -31,6 +32,7 @@
                                                     lineCap: .round,
                                                     lineJoin: .round))
                     .setAngle(angle: 33)
+                    .frame(width: 50, height: 50)
                 ```
             }
             

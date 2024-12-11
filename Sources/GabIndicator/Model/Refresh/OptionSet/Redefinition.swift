@@ -20,9 +20,9 @@ public struct RedefinitionDecimals: OptionSet {
         self.rawValue = rawValue
     }
     
-    /// 기본 옵션.
-    /// 소수점 처리를 안함
-    public static let none = RedefinitionDecimals(rawValue: 0 << 0)
+//    /// 기본 옵션.
+//    /// 소수점 처리를 안함
+//    public static let none = RedefinitionDecimals(rawValue: 0 << 0)
     /// 소수점 올림
     public static let `ceil` = RedefinitionDecimals(rawValue: 1 << 0)
     /// 소수점 반올림
