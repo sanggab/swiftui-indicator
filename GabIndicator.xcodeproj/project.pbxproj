@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF4B05A52D090FA50014FBA0 /* GabIndicator.docc in Sources */ = {isa = PBXBuildFile; fileRef = EF4B05A42D090FA50014FBA0 /* GabIndicator.docc */; };
 		EFC9CF402CE33F6A007A6F40 /* GabIndicator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC9CF362CE33F6A007A6F40 /* GabIndicator.framework */; };
 /* End PBXBuildFile section */
 
@@ -21,6 +22,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF4B05A42D090FA50014FBA0 /* GabIndicator.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = GabIndicator.docc; sourceTree = "<group>"; };
 		EFC9CF362CE33F6A007A6F40 /* GabIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GabIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC9CF3F2CE33F6A007A6F40 /* GabIndicatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GabIndicatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -52,6 +54,7 @@
 		EFC9CEAA2CE33E27007A6F40 = {
 			isa = PBXGroup;
 			children = (
+				EF4B05A42D090FA50014FBA0 /* GabIndicator.docc */,
 				EFC9CF012CE33EDB007A6F40 /* Sources */,
 				EFC9CF022CE33EE7007A6F40 /* Tests */,
 				EFC9CEB42CE33E27007A6F40 /* Products */,
@@ -203,6 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF4B05A52D090FA50014FBA0 /* GabIndicator.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

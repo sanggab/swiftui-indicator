@@ -126,14 +126,15 @@ final class ShapeViewModel: GabReducer {
     private func wingAction(_ action: Action.Wing) {
         switch action {
         case .setAngle(let angle):
+            if self(\.wingState.redefinitionAngleMode) != .none {
+                self.update(\.wingState.redefinitionAngleMode, newValue: .none)
+            }
+            
             self.update(\.wingState.angle, newValue: angle)
             
-            if self(\.wingState.redefinitionAngleMode) == .none {
-                
-                let wingCount = Int(abs(360 / self(\.wingState.angle)))
-                
-                self.wingAction(.setWingCount(wingCount))
-            }
+            let wingCount = Int(abs(360 / self(\.wingState.angle)))
+            
+            self.wingAction(.setWingCount(wingCount))
             
         case .setStartAngle(let angle):
             self.update(\.wingState.startAngle, newValue: angle)

@@ -7,9 +7,13 @@
 
 import SwiftUI
 
+/// 새로고침 Indicator
+///
+/// Apple에서 제공해주는 UIRefreshControl하고 같은 디자인을 취하지만, 각종 modifier()들로 원하는 스타일로 변경이 가능합니다.
 public struct RefreshIndicator: View {
     @ObservedObject private var viewModel: ShapeViewModel = ShapeViewModel()
     
+    /// RefreshIndicator을 만듭니다.
     public init() { }
     
     public var body: some View {
@@ -39,19 +43,32 @@ public struct RefreshIndicator: View {
         }
         .onAppear {
             setStartAngle()
-            viewModel.action(.timer(.setTimer))
+//            viewModel.action(.timer(.setTimer))
         }
     }
 }
 
 // MARK: - RefreshIndicator Modifier
 public extension RefreshIndicator {
+    /// `RefreshIndicator`에 `strokeStyle`을 적용시킵니다.
+    ///
+    /// `RefreshIndicator`의 `lines`에 대해 커스텀이 필요한 경우 `Shape`에 `strokeStyle`을 적용시킨 것 처럼 사용하면 됩니다.
+    ///
+    /// - parameter style: `Shape`의 `StrokeStyle` 입니다.
+    ///
+    /// - Returns: ``RefreshIndicator``
     func strokeStyle(style: StrokeStyle) -> RefreshIndicator {
         let view: RefreshIndicator = self
         view.viewModel.action(.wing(.setStyle(style)))
         return view
     }
-    
+    /// `RefreshIndicator`의 각 `line` 사이의 각도를 결정합니다.
+    ///
+    /// 360도를 기준으로 설정한 `angle`을 나눠서 나온 값을 가지고 `RefreshIndicator`의 `line` 개수를 설정합니다.
+    ///
+    /// 만약 360도로 나눈 값이 유리수로 떨어진 경우에, 정수로 변형시켜서 `line` 개수를 설정하기 때문에 UI가 이상해질 수 있습니다.
+    ///
+    /// - warning: ``setRedefinitionAngle(angle:_:)`` 하고 동시에 사용할 경우, 나중에 사용한 modifier가 적용됩니다.
     func setAngle(angle: Double) -> RefreshIndicator {
         let view: RefreshIndicator = self
         view.viewModel.action(.wing(.setAngle(angle)))
@@ -89,7 +106,7 @@ extension RefreshIndicator {
         let rotateAngle = viewModel(\.wingState.rotateAngle)
         /// Swift에서 Path를 이용해 각도를 계산하거나 addArc등 그릴 경우에, 0도는 3시방향이라 이것을 12시 방향으로 돌리기 위한 각도
         let moveAngle = 90 + viewModel(\.wingState.angle)
-        print("상갑 logEvent \(#function) moveAngle : \(moveAngle)")
+        
         return currentAngle + rotateAngle - moveAngle
     }
     /// Opacity를 구하는 method
@@ -119,9 +136,7 @@ extension RefreshIndicator {
 #Preview {
     RefreshIndicator()
         .strokeStyle(style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
-//        .setAngle(angle: 45)
-//        .setRedefinitionAngle(angle: 45)
+        .setAngle(angle: 36)
         .setSpeed(duration: 0.08)
-//        .controlIndicator(state: true)
         .frame(width: 50, height: 50)
 }
