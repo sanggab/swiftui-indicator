@@ -157,10 +157,10 @@ extension RefreshIndicator {
 
 #Preview {
     RefreshIndicator()
-        .strokeStyle(style: StrokeStyle(lineWidth: 5,
+        .strokeStyle(style: StrokeStyle(lineWidth: 10,
                                         lineCap: .round,
                                         lineJoin: .round))
         .setRedefinitionAngle(angle: 36)
-        .setSpeed(duration: 10)
-        .frame(width: 50, height: 25)
+        .setSpeed(duration: 0.1)
+        .frame(width: 50, height: 50)
 }
