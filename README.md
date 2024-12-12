@@ -81,8 +81,15 @@ RefreshIndicator custom을 도와주는 modifier들을 소개합니다.
 > [!Note]
 > 만약 360도로 나눈 값이 유리수로 떨어진 경우에, 정수로 변형시켜서 `line` 개수를 설정하기 때문에 UI가 이상해질 수 있습니다.
 
+|정수|유리수|
+|:--:|:--:|
+|angle이 36일 때|angle이 33일 때|
+|<img src="GabIndicator.docc/Resources/integer_rational/integer_refreshIndicator.png"/> | <img src="GabIndicator.docc/Resources/integer_rational/rational_refreshIndicator.png"/> |
+
+
 > [!Warning]
 > `setRedefinitionAngle(angle:_:)` 하고 동시에 사용할 경우, 나중에 사용한 modifier가 적용됩니다.
+
 
  <br>
 
@@ -100,6 +107,11 @@ RefreshIndicator custom을 도와주는 modifier들을 소개합니다.
 
 > [!Note]
 > `setAngle(angle:)` 하고 다른 점은 360도를 기준으로 설정한 `angle`을 나눴을 때, 유리수가 나와도 `angle`을 `redefinition`해서 UI가 자연스럽게 보이냐 안보이냐 차이 입니다.
+
+| modifier | angle | image |
+|:--:|:--:|:--:|
+| **`setAngle(angle:)`** | 41 | <img src="GabIndicator.docc/Resources/setAngle/setAngle_refreshIndicator.png"/> |
+| **`setRedefinitionAngle(angle:_:)`** | 41 | <img src="GabIndicator.docc/Resources/setRedefinitionAngle/setRedefinitionAngle_refreshIndicator.png"/> |
 
 > [!Warning]
 > `setAngle(angle:)` 하고 동시에 사용할 경우, 나중에 사용한 modifier가 적용됩니다.
@@ -122,3 +134,8 @@ RefreshIndicator custom을 도와주는 modifier들을 소개합니다.
   RefreshIndicator()
             .setSpeed(duration: 0.1)
   ```
+
+| duration | Image |
+|:--:|:-:|
+| **`default(1.5)`** | <img src="GabIndicator.docc/Resources/setSpeed/setSpeed_duration1.5_refreshIndicator.gif"/> |
+| **`0.1`** | <img src="GabIndicator.docc/Resources/setSpeed/setSpeed_duration0.1_refreshIndicator.gif"/> |
