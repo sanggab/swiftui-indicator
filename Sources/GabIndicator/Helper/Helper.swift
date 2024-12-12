@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-final class TrigonometricCalculator: ShapePointFeatures {
+final class TrigonometricCalculator: ShapePointFeatures, Sendable {
     
     static let `default` = TrigonometricCalculator()
     

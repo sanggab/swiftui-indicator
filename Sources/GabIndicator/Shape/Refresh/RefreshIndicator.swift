@@ -57,6 +57,8 @@ public extension RefreshIndicator {
     /// - parameter style: `Shape`의 `StrokeStyle` 입니다.
     ///
     /// - Returns: `RefreshIndicator`
+    ///
+    /// - Tip: RefreshIndicator의 line의 Color을 변경하고 싶다면 ``foregroundStyle(_:)``을 사용하면 됩니다.
     func strokeStyle(style: StrokeStyle) -> RefreshIndicator {
         let view: RefreshIndicator = self
         view.viewModel.action(.wing(.setStyle(style)))
@@ -66,11 +68,11 @@ public extension RefreshIndicator {
     ///
     /// 360도를 기준으로 설정한 `angle`을 나눠서 나온 값을 가지고 `RefreshIndicator`의 `line` 개수를 설정합니다.
     ///
-    /// 만약 360도로 나눈 값이 유리수로 떨어진 경우에, 정수로 변형시켜서 `line` 개수를 설정하기 때문에 UI가 이상해질 수 있습니다.
-    ///
     /// - parameter angle: 각도
     ///
     /// - returns: `RefreshIndicator`
+    ///
+    /// - Note: 만약 360도로 나눈 값이 유리수로 떨어진 경우에, 정수로 변형시켜서 `line` 개수를 설정하기 때문에 UI가 이상해질 수 있습니다.
     ///
     /// - warning: ``setRedefinitionAngle(angle:_:)`` 하고 동시에 사용할 경우, 나중에 사용한 modifier가 적용됩니다.
     func setAngle(angle: Double) -> RefreshIndicator {
@@ -153,9 +155,13 @@ extension RefreshIndicator {
     }
 }
 
+@available(iOS 16.0, *)
 #Preview {
     RefreshIndicator()
-        .strokeStyle(style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
+        .strokeStyle(style: StrokeStyle(lineWidth: 10,
+                                        lineCap: .round,
+                                        lineJoin: .round))
+        .setRedefinitionAngle(angle: 33)
         .setSpeed(duration: 0.1)
         .frame(width: 50, height: 50)
 }

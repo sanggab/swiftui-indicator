@@ -1,7 +1,7 @@
 # ``GabIndicator/RefreshIndicator/setAngle(angle:)``
 
 
-##### 360도를 나눈 값에 따른 RefreshIndicator의 UI 차이점
+##### 360도를 나눈 값이 정수 / 유리수일 때, RefreshIndicator의 UI 차이점
 
 @TabNavigator {
     @Tab(정수) {

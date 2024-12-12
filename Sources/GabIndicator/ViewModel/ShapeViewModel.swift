@@ -60,7 +60,6 @@ final class ShapeViewModel: GabReducer {
         var isPlaying: Bool = true
     }
     
-    /// hi
     struct State: Equatable {
         init() { }
         
