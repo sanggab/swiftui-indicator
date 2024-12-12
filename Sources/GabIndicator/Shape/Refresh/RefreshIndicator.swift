@@ -33,7 +33,7 @@ public struct RefreshIndicator: View {
         .onReceive(viewModel(\.timerState).timer) { _ in
             var currentAngle = viewModel(\.wingState.startAngle)
             
-            if currentAngle == 360.0 {
+            if currentAngle >= 360.0 {
                 currentAngle = viewModel(\.wingState.angle)
             } else {
                 currentAngle += viewModel(\.wingState.angle)
@@ -155,13 +155,12 @@ extension RefreshIndicator {
     }
 }
 
-@available(iOS 16.0, *)
 #Preview {
     RefreshIndicator()
-        .strokeStyle(style: StrokeStyle(lineWidth: 10,
+        .strokeStyle(style: StrokeStyle(lineWidth: 5,
                                         lineCap: .round,
                                         lineJoin: .round))
-        .setRedefinitionAngle(angle: 33)
-        .setSpeed(duration: 0.1)
-        .frame(width: 50, height: 50)
+        .setRedefinitionAngle(angle: 36)
+        .setSpeed(duration: 10)
+        .frame(width: 50, height: 25)
 }
