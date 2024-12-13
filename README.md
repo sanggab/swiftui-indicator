@@ -12,6 +12,9 @@
     * [Style](#style)
     * [Angle](#angle)
     * [Speed](#speed)
+  * [Tip](#tip)
+    * [Size](#size)
+    * [Color](#color)
 
 
 
@@ -52,9 +55,6 @@ RefreshIndicator custom을 도와주는 modifier들을 소개합니다.
                                           lineCap: .round,
                                           lineJoin: .round))
   ```
-
-> [!Note]  
-> 만약, `RefreshIndicator`의 `line`의 `Color`을 변경하고 싶다면 `foregroundStyle(_:)`을 사용하면 됩니다.
 
 <br>
 
@@ -139,3 +139,52 @@ RefreshIndicator custom을 도와주는 modifier들을 소개합니다.
 |:--:|:-:|
 | **`default(1.5)`** | <img src="GabIndicator.docc/Resources/setSpeed/setSpeed_duration1.5_refreshIndicator.gif"/> |
 | **`0.1`** | <img src="GabIndicator.docc/Resources/setSpeed/setSpeed_duration0.1_refreshIndicator.gif"/> |
+
+<br>
+
+<a name="tip"></a>
+## Tip
+
+`RefreshIndicator`을 사용할 때 도움이 될 만한 팁 모음입니다.
+
+<br>
+
+<a name="size"></a>
+### 1. Size
+
+`RefreshIndicator`는 `Shape`으로 구성되었기 때문에, 따로 `size`을 안잡으면 꽉 채울 수 있는 만큼 늘어납니다.  
+그래서 `RefreshIndicator`을 사용하실 때, 내가 원하는 `size`를 `frame(width:height:alignment:)` 으로 잡으면 됩니다.
+
+##### Usage example:
+```swift
+RefreshIndicator()
+    .strokeStyle(style: StrokeStyle(lineWidth: 10,
+                                        lineCap: .round,
+                                        lineJoin: .round))
+    .setRedefinitionAngle(angle: 33)
+    .setSpeed(duration: 0.1)
+    .frame(width: 50, height: 50)
+```
+
+<br>
+
+
+<a name="color"></a>
+### 2. Color
+
+`RefreshIndicator`의 `line`의 `Color`을 변경하고 싶다면 `foregroundColor(_:)`을 사용하면 됩니다.
+
+```swift
+RefreshIndicator()
+    .strokeStyle(style: StrokeStyle(lineWidth: 10,
+                                    lineCap: .round,
+                                    lineJoin: .round))
+    .setRedefinitionAngle(angle: 33)
+    .setSpeed(duration: 0.1)
+    .foregroundColor(Color.orange)
+    .frame(width: 50, height: 50)
+```
+
+> [!Note]
+> iOS 15 이상에서는 `foregroundStyle(_:)`을 사용하면 됩니다.
+
