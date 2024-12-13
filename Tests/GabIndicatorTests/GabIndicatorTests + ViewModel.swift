@@ -121,23 +121,36 @@ final class TestShapeViewModel: TestGabReducer {
         print("상갑 logEvent \(#function) action: \(action)")
         switch action {
         case .setAngle(let angle):
-            self.update(\.wingState.angle, newValue: angle)
-            
-            if angle != self(\.wingState.rotateAngle) {
-                self.wingAction(.setRotateAngle(angle))
+            if angle != .zero {
+                self.update(\.wingState.angle, newValue: angle)
+                
+                if angle != self(\.wingState.rotateAngle) {
+                    self.wingAction(.setRotateAngle(angle))
+                }
+                
+                let wingCount = Int(abs(360 / self(\.wingState.angle)))
+                
+                self.wingAction(.setWingCount(wingCount))
+            } else {
+                let newAngle = 45.0
+                self.update(\.wingState.angle, newValue: newAngle)
+                
+                if newAngle != self(\.wingState.rotateAngle) {
+                    self.wingAction(.setRotateAngle(newAngle))
+                }
+                
+                let wingCount = Int(abs(360 / self(\.wingState.angle)))
+                
+                self.wingAction(.setWingCount(wingCount))
             }
             
-            let wingCount = Int(abs(360 / self(\.wingState.angle)))
-            
-            self.wingAction(.setWingCount(wingCount))
-            
         case .redefinitionAngle(let angle):
-            let redifinitionAngle = self.redifinitionAngle(angle: angle)
+            let redefinitionAngle = self.redefinitionAngle(angle: angle)
             
-            self.update(\.wingState.angle, newValue: redifinitionAngle)
+            self.update(\.wingState.angle, newValue: redefinitionAngle)
             
-            if redifinitionAngle != self(\.wingState.rotateAngle) {
-                self.wingAction(.setRotateAngle(redifinitionAngle))
+            if redefinitionAngle != self(\.wingState.rotateAngle) {
+                self.wingAction(.setRotateAngle(redefinitionAngle))
             }
             
         case .setStyle(let strokeStyle):
@@ -147,12 +160,12 @@ final class TestShapeViewModel: TestGabReducer {
             self.update(\.wingState.startAngle, newValue: angle)
             
         case .setRedefinitionAngle(let angle):
-            let redifinitionAngle = self.redifinitionAngle(angle: angle)
+            let redefinitionAngle = self.redefinitionAngle(angle: angle)
             
-            self.update(\.wingState.angle, newValue: redifinitionAngle)
+            self.update(\.wingState.angle, newValue: redefinitionAngle)
             
-            if redifinitionAngle != self(\.wingState.startAngle) {
-                self.wingAction(.setStartAngle(redifinitionAngle))
+            if redefinitionAngle != self(\.wingState.startAngle) {
+                self.wingAction(.setStartAngle(redefinitionAngle))
             }
             
         case .setRedefinitionAngleMode(let mode):
@@ -225,13 +238,18 @@ extension TestShapeViewModel: TestShapeFeatures {
     }
     
     // 360으로 안떨어지는 angle이 들어온 경우에 결국은 angle을 재정립시켜줄 필요가 있음.
-    private func redifinitionAngle(angle: Double) -> Double {
-        let newWingCount = self.redifinitionWingCount(count: 360 / angle)
-        
-        self.action(.wing(.setWingCount(Int(newWingCount))))
-        let newAngle: Double = 360 / newWingCount
-        
-        return newAngle
+    private func redefinitionAngle(angle: Double) -> Double {
+        if angle != .zero {
+            let newWingCount = self.redifinitionWingCount(count: 360 / angle)
+            
+            self.action(.wing(.setWingCount(Int(newWingCount))))
+            let newAngle: Double = 360 / newWingCount
+            
+            return newAngle
+        } else {
+            self.action(.wing(.setWingCount(8)))
+            return 45.0
+        }
     }
     
     private func redifinitionWingCount(count: Double) -> Double {

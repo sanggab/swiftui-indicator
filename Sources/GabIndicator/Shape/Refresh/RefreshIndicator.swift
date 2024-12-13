@@ -77,7 +77,7 @@ public extension RefreshIndicator {
     /// - warning: ``setRedefinitionAngle(angle:_:)`` 하고 동시에 사용할 경우, 나중에 사용한 modifier가 적용됩니다.
     func setAngle(angle: Double) -> RefreshIndicator {
         let view: RefreshIndicator = self
-        view.viewModel.action(.wing(.setAngle(angle)))
+        view.viewModel.action(.wing(.setAngle(angle == .zero ? 45.0 : abs(angle))))
         return view
     }
     /// `RefreshIndicator`의 각 `line` 사이의 각도를 결정합니다.
@@ -96,7 +96,7 @@ public extension RefreshIndicator {
     func setRedefinitionAngle(angle: Double, _ mode: RedefinitionDecimals = .round) -> RefreshIndicator {
         let view: RefreshIndicator = self
         view.viewModel.action(.wing(.setRedefinitionAngleMode(mode)))
-        view.viewModel.action(.wing(.setRedefinitionAngle(angle)))
+        view.viewModel.action(.wing(.setRedefinitionAngle(angle == .zero ? 45.0 : abs(angle))))
         return view
     }
     /// `RefreshIndicator`의 애니메이션 속도를 설정합니다.
